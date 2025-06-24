@@ -11,20 +11,20 @@ body {
   align-items: center;
 }
 
-a.back-button {
-  align-self: flex-start;
-  margin-bottom: 15px;
-  font-weight: 900;
-  font-size: 2.4rem;
-  color: #f39c12;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  user-select: none;
-  cursor: pointer;
-  transition: color 0.3s;
-}
+    a.back-button {
+      align-self: flex-start;
+      margin-bottom: 15px;
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: #f39c12;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      user-select: none;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
 
 a.back-button:hover {
   color: #e67e22;

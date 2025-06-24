@@ -42,7 +42,6 @@ a.back-button svg {
 .container {
   position: relative;
   width: 100vw;
-  height: 100vh;
   max-width: 900px;
   max-height: 800px;
   display: flex;
@@ -105,7 +104,6 @@ a.back-button svg {
   justify-content: center;
 }
 
-/* Animación de caída para el texto */
 @keyframes dropIn {
   0% {
     opacity: 0;
@@ -118,20 +116,16 @@ a.back-button svg {
 }
 
 .text {
-  position: absolute;
-  top: -60px;
-  font-size: 3rem;
-  font-weight: bold;
+  margin-bottom: 30px;
+  font-size: 2.3rem;
   text-align: center;
-  animation: dropIn 1s ease-out forwards;
-  opacity: 0;
-  z-index: 10;
+  font-weight: 700;
 }
 
 .illustration {
-  margin-top: 140px;
+  margin-top: 20px;;
+  max-width: 35vw; 
   position: relative;
-  max-width: 60vw;
   max-height: 60vh;
   filter: none;
   z-index: 10;

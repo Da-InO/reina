@@ -3,8 +3,8 @@
 
     body {
       font-family: 'Fredoka One', cursive, sans-serif;
-      background: linear-gradient(135deg, #def3fd 0%, #def3fd 100%);
       text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+      background: linear-gradient(135deg, #def3fd 0%, #def3fd 100%);
       margin: 0;
       padding: 20px;
       color: #e67e22;

@@ -1,10 +1,9 @@
     
-    @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
-    
     body {
-      font-family: 'Luckiest Guy', cursive;
-      text-shadow: 3px 3px 0 #000;
+      font-family: 'Fredoka One', cursive, sans-serif;
+      text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
       background: linear-gradient(135deg, #def3fd 0%, #def3fd 100%);
       margin: 0;
       padding: 20px;

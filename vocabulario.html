@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vocabulario - REINA</title>
+  <link rel="stylesheet" href="css/vocabulario.css" />
+  <script type="module" src="js/vocabulario.js"></script>
+</head>
+<body>
+  <a href="eco-aventura.html" class="back-button" aria-label="Volver">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M15 18l-6-6 6-6" stroke="#f39c12" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Volver
+  </a>
+
+  <!-- Título y contador -->
+  <h1 style="text-align: center;">Vocabulario</h1>
+  <div id="progress-counter" style="position: absolute; top: 20px; right: 30px; font-weight: bold; font-size: 1.2rem; color: #34495e;"></div>
+
+  <!-- Contenedor dinámico de palabra -->
+  <section id="dynamic-vocabulary" class="vocabulario-container" style="text-align: center; margin-top: 50px;">
+    <h2 id="nivel-actual" style="color: #f39c12;"></h2>
+    <div id="palabra-actual" class="palabra" style="font-size: 3rem; margin-bottom: 20px;">Agua</div>
+    <button id="btn-siguiente" style="padding: 10px 20px; font-size: 1rem; cursor: pointer;">Siguiente</button>
+  </section>
+
+  <!-- Ocultamos secciones existentes (solo estructural, no funcional) -->
+  <section class="letter-section" id="letter-A" hidden>
+    <!-- contenido oculto pero preservado -->
+  </section>
+
+  <section class="letter-section" id="letter-B" hidden></section>
+  <section class="letter-section" id="letter-C" hidden></section>
+
+  <div id="message" aria-live="polite"></div>
+  <div id="listen-message">🎤 ¡Escucha y repite!</div>
+</body>
+</html>

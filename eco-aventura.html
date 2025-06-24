@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Eco Aventura</title>
+  <link rel="icon" href="iconos/icono.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="css/eco-aventura.css" />
+  <script type="module" src="js/eco-aventura.js" defer></script>
+</head>
+<body>
+  <a href="index.html" class="back-button" aria-label="Volver al inicio">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M15 18l-6-6 6-6" stroke="#f39c12" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Volver
+  </a>
+
+  <h1>ELIGE UNA LETRA</h1>
+
+  <button class="btn btn-left" id="btnLeft" aria-label="Anterior">
+    <img src="imagenes/Izquierda.svg" alt="Flecha izquierda" class="arrow-image">
+  </button>
+
+  <div id="eco-content" role="list">
+    <img src="imagenes/Letras/LetraA.png" alt="Letra A" class="letter" role="listitem" tabindex="0" id="letterA" />
+    <img src="imagenes/Letras/LetraB.png" alt="Letra B" class="letter" role="listitem" tabindex="0" id="letterB" />
+    <img src="imagenes/Letras/LetraC.png" alt="Letra C" class="letter" role="listitem" tabindex="0" id="letterC" />
+  </div>
+
+  <button class="btn btn-right" id="btnRight" aria-label="Siguiente">
+    <img src="imagenes/Derecha.svg" alt="Flecha derecha" class="arrow-image">
+  </button>
+  
+</body>
+</html>

@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
+body {
+  font-family: 'Luckiest Guy', cursive;
+  text-shadow: 3px 3px 0 #000;
+  margin: 0; padding: 0; height: 100%;
+  background: linear-gradient(135deg, #def3fd 0%, #def3fd 100%);
+  user-select: none;
+  color: #e67e22;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+a.back-button {
+  align-self: flex-start;
+  margin-bottom: 15px;
+  font-weight: 900;
+  font-size: 2.4rem;
+  color: #f39c12;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+a.back-button:hover {
+  color: #e67e22;
+}
+
+a.back-button svg {
+  width: 36px;
+  height: 36px;
+  fill: #f39c12;
+  flex-shrink: 0;
+}
+
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  max-width: 900px;
+  max-height: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Fondo con formas difusas */
+.background-shapes {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.25;
+  animation: float 12s ease-in-out infinite alternate;
+}
+
+.shape1 {
+  width: 200px; height: 200px;
+  background: #ffbc60;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape2 {
+  width: 300px; height: 300px;
+  background: #6fc4ff;
+  top: 60%;
+  right: 15%;
+  animation-delay: 4s;
+}
+
+.shape3 {
+  width: 150px; height: 150px;
+  background: #ff60a9;
+  top: 30%;
+  right: 50%;
+  animation-delay: 8s;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(25px); }
+}
+
+.illustration-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Animación de caída para el texto */
+@keyframes dropIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.text {
+  position: absolute;
+  top: -60px;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  animation: dropIn 1s ease-out forwards;
+  opacity: 0;
+  z-index: 10;
+}
+
+.illustration {
+  margin-top: 140px;
+  position: relative;
+  max-width: 60vw;
+  max-height: 60vh;
+  filter: none;
+  z-index: 10;
+  transition: opacity 0.5s ease, transform 0.3s ease;
+  cursor: pointer;
+  transform: scale(1.25);
+  animation: slideZoom 0.6s ease-in-out;
+}
+
+#logout {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #f39c12;
+  border: none;
+  background: none;
+  font-weight: 700;
+  transition: color 0.3s;
+}
+
+#logout:hover {
+  color: #e67e22;
+}
+
+.btn {
+  position: fixed;
+  top: 50%;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, transform 0.2s;
+  user-select: none;
+  z-index: 20;
+  padding: 0;
+}
+
+.arrow-image {
+  width: 150px;
+  height: 150px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.arrow-image:hover {
+  transform: scale(1.2);
+}
+
+.btn-left {
+  left: 150px;
+  transform: translateY(-50%);
+}
+
+.btn-right {
+  right: 150px;
+  transform: translateY(-50%);
+}
+
+/* Animación para ilustración */
+@keyframes slideZoom {
+  0% { transform: scale(1) translateY(0); opacity: 0.3; }
+  100% { transform: scale(1.1) translateY(-10px); opacity: 1; }
+}
+
+@keyframes flyOutLeft {
+  0%   { transform: translateX(0); opacity: 1; }
+  60%  { transform: translateX(-150px) scale(1.1); }
+  100% { transform: translateX(-200vw); opacity: 0; }
+}
+
+@keyframes flyOutRight {
+  0%   { transform: translateX(0); opacity: 1; }
+  60%  { transform: translateX(150px) scale(1.1); }
+  100% { transform: translateX(200vw); opacity: 0; }
+}
+
+.animate-left {
+  animation: flyOutLeft 0.6s ease-in-out forwards;
+}
+
+.animate-right {
+  animation: flyOutRight 0.6s ease-in-out forwards;
+}

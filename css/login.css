@@ -1,45 +1,295 @@
-    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
-    body {
-      font-family: 'Fredoka One', cursive, sans-serif;
-      text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
-      background: #f0f9ff;
-      margin: 0;
-      padding: 20px;
-      color: #e67e22;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      justify-content: center;
-    }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 
-    input,
-    button {
-      font-size: 1.5rem;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      width: 300px;
-    }
+body {
+  font-family: 'Fredoka One', cursive, sans-serif;
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
 
-    button {
-      cursor: pointer;
-      background: #f39c12;
-      color: white;
-      border: none;
-      transition: background 0.3s;
-    }
+  background: url('../imagenes/fondologin.png') no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  background-attachment: fixed;
 
-    button:hover {
-      background: #e67e22;
-    }
+  color: #e67e22;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-    #msg {
-      margin-top: 15px;
-      font-weight: 700;
-      min-height: 1.5em;
-      color: #e67e22;
-      text-align: center;
-    }
+input,
+button {
+  font-size: 1.5rem;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 300px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+button {
+  cursor: pointer;
+  background: #f39c12;
+  color: white;
+  border: none;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #e67e22;
+}
+
+#msg {
+  margin-top: 15px;
+  font-weight: 700;
+  min-height: 1.5em;
+  color: #e67e22;
+  text-align: center;
+}
+
+.emoji-top-right {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 150px;
+  height: 150px;
+  perspective: 800px;
+  z-index: 10;
+}
+
+.emoji-top-right .face {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 40% 40%, #ffd55e, #f9a825);
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), inset -5px -5px 15px #fff4c4;
+  transition: all 1s ease;
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+/* Resto del estilo del emoji... */
+.emoji-top-right .eye {
+  width: 30px;
+  height: 15px;
+  position: absolute;
+  top: 55px;
+  background: transparent;
+  border-bottom: 4px solid #333;
+  border-radius: 50%;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+  transition: all 0.8s ease;
+}
+.emoji-top-right .eye-left { left: 30px; }
+.emoji-top-right .eye-right { right: 30px; }
+
+.emoji-top-right .mouth {
+  width: 25px;
+  height: 25px;
+  background: radial-gradient(circle, #333 40%, #111);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+  transition: all 0.8s ease;
+}
+
+.emoji-top-right .face:hover .eye {
+  width: 15px;
+  height: 25px;
+  background: radial-gradient(#000 60%, #222);
+  border: none;
+  border-radius: 50%;
+  top: 45px;
+}
+.emoji-top-right .face:hover .mouth {
+  width: 50px;
+  height: 20px;
+  background: transparent;
+  border: 5px solid #000;
+  border-top: none;
+  border-radius: 0 0 40px 40px;
+  bottom: 40px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.emoji-top-right .zzz {
+  position: absolute;
+  color: #5a85e0;
+  font-size: 40px;
+  font-weight: bold;
+  animation: floatZ 3s ease-in-out infinite;
+  opacity: 0;
+  text-shadow: 0 0 10px #aecbfa;
+  top: 0;
+  left: 60px;
+}
+.emoji-top-right .zzz.z2 { animation-delay: 1s; left: 75px; }
+.emoji-top-right .zzz.z3 { animation-delay: 2s; left: 90px; }
+.emoji-top-right .face:hover .zzz {
+  animation-play-state: paused;
+  opacity: 0 !important;
+}
+
+@keyframes floatZ {
+  0% { transform: translateY(0); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(-80px); opacity: 0; }
+}
+
+/* Animación para el formulario */
+body.popup-active h1,
+body.popup-active input,
+body.popup-active button {
+  transform: translateY(-80px);
+  transition: transform 0.5s ease;
+}
+
+/* Contenedor emergente oculto por defecto */
+.popup-container {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  background: url('../imagenes/fondo2.png') no-repeat center;
+  background-size: auto;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 70px;
+  text-align: center;
+  transition: bottom 0.5s ease;
+  z-index: 20;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Mostrar el popup */
+body.popup-active .popup-container {
+  bottom: 0;
+}
+
+/* Estilo de contenido */
+.popup-content h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.perfil-row {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.perfil-row img {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.perfil-row img:hover {
+  transform: scale(1.1);
+}
+
+/* Árboles laterales */
+.arbol {
+  position: absolute;
+  bottom: 0;
+  width: 380px; /* Aumentado de 200px a 380px */
+  height: auto;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.arbol-izquierdo {
+  left: -5px;
+}
+
+.arbol-derecho {
+  right: -10px;
+}
+
+.popup-container.show .arbol {
+  opacity: 1;
+  transform: translateY(-30px); /* se levanta un poco */
+}
+
+
+.perfil-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  transition: transform 0.3s;
+}
+
+.perfil-img:hover {
+  transform: scale(1.1);
+}
+
+.custom-upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eee;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #666;
+}
+
+.perfil {
+  position: relative; /* 👈 Necesario para que el botón se ubique relativo a esta caja */
+  text-align: center;
+  display: inline-block; /* 👈 Importante para que no ocupe todo el ancho */
+}
+
+.perfil img {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.perfil p {
+  margin: 5px 0 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Botón de edición de imagen */
+.edit-btn {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  transition: background 0.3s;
+}
+
+.edit-btn:hover {
+  background: #f0f0f0;
+}
+

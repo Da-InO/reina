@@ -14,6 +14,42 @@
   <input type="text" id="username" placeholder="Nombre del alumno" aria-label="Nombre del alumno" />
   <button type="submit" id="loginBtn">Ingresar</button>
   <div id="msg" role="alert" aria-live="polite"></div>
+
+  <!-- EMOJI CLICKEABLE -->
+  <div class="emoji-top-right">
+    <div class="face" id="emojiBtn">
+      <div class="eye eye-left"></div>
+      <div class="eye eye-right"></div>
+      <div class="mouth"></div>
+      <span class="zzz">Z</span>
+      <span class="zzz z2">Z</span>
+      <span class="zzz z3">Z</span>
+    </div>
+  </div>
+
+  <!-- POPUP EMERGENTE CORRECTO -->
+  <div id="popup" class="popup-container">
+    <img src="imagenes/arbol1.png" alt="Árbol izquierdo" class="arbol arbol-izquierdo">
+    <img src="imagenes/arbol2.png" alt="Árbol derecho" class="arbol arbol-derecho">
+
+    <div class="popup-content">
+      <h2>¿Quién eres?</h2>
+      <div class="perfil-row" id="perfilContainer">
+        <img src="https://randomuser.me/api/portraits/kids/1.jpg" alt="Perfil 1" class="perfil-img">
+        <img src="https://randomuser.me/api/portraits/kids/2.jpg" alt="Perfil 2" class="perfil-img">
+        <img src="https://randomuser.me/api/portraits/kids/3.jpg" alt="Perfil 3" class="perfil-img">
+
+        <!-- Botón para subir imagen personalizada -->
+        <label for="upload" class="perfil-img custom-upload" title="Subir imagen personalizada">
+          <span>+</span>
+        </label>
+        <input type="file" id="upload" accept="image/*" style="display: none;">
+      </div>
+
+    </div>
+  </div>
+
+
 </body>
 
 </html>

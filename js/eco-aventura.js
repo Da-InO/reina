@@ -1,88 +1,66 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const lettersGroups = [
-    ['A', 'B', 'C'],
-    ['D', 'E', 'F'],
-    ['G', 'H', 'I'],
-    ['J', 'K', 'L'],
-    ['M', 'N', 'Ñ', 'O'],
-    ['P', 'Q', 'R'],
-    ['S', 'T', 'U'],
-    ['V', 'W', 'X'],
-    ['Y', 'Z']
+  // 1. Aplanamos el arreglo: ahora es una lista simple de todas las letras.
+  const allLetters = [
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+    'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
   ];
 
-  const imgElements = [
-    document.getElementById('letterA'),
-    document.getElementById('letterB'),
-    document.getElementById('letterC')
-  ];
-
+  // 2. Seleccionamos el único elemento de imagen que dejamos en el HTML.
+  const letterImage = document.getElementById('letterImage');
+  
   const btnLeft = document.getElementById('btnLeft');
   const btnRight = document.getElementById('btnRight');
 
-  let currentIndex = 0;
+  let currentIndex = 0; // Este índice ahora apunta a una letra individual.
 
-  function displayLetters() {
-    const currentLetters = lettersGroups[currentIndex];
+  // 3. La función ahora se encarga de mostrar una sola letra.
+  function displayLetter() {
+    const currentLetter = allLetters[currentIndex];
 
-    // Reiniciar imágenes para animar
-    imgElements.forEach(img => {
-      img.classList.remove('active');
-      img.style.animation = 'none';
-      img.style.opacity = 0;
-      img.src = '';
-      img.alt = '';
-      img.style.display = 'none';
-    });
-
+    // Agregamos una pequeña transición para que el cambio sea más suave
+    letterImage.style.opacity = 0;
+    
     setTimeout(() => {
-      currentLetters.forEach((letter, i) => {
-        if (imgElements[i]) {
-          const img = imgElements[i];
-          img.src = `imagenes/Letras/Letra${letter}.png`;
-          img.alt = `Letra ${letter}`;
-          img.setAttribute('data-letter', letter);
-          img.style.display = 'block';
-          img.style.opacity = 1;
-          img.classList.add('active');
-          // Opcional: ajustar posición si quieres (igual que antes)
-        }
-      });
-    }, 10);
+      letterImage.src = `imagenes/Letras/Letra${currentLetter}.png`;
+      letterImage.alt = `Letra ${currentLetter}`;
+      letterImage.setAttribute('data-letter', currentLetter);
+      letterImage.style.opacity = 1;
+    }, 150); // 150ms para que la transición se note
 
+    // 4. Actualizamos el estado de los botones.
     btnLeft.disabled = currentIndex === 0;
-    btnRight.disabled = currentIndex === lettersGroups.length - 1;
+    btnRight.disabled = currentIndex === allLetters.length - 1;
   }
 
   btnLeft.addEventListener('click', () => {
     if (currentIndex > 0) {
       currentIndex--;
-      displayLetters();
+      displayLetter();
     }
   });
 
   btnRight.addEventListener('click', () => {
-    if (currentIndex < lettersGroups.length - 1) {
+    if (currentIndex < allLetters.length - 1) {
       currentIndex++;
-      displayLetters();
+      displayLetter();
     }
   });
 
-  // Click y teclado para redirección con letra actual
-  imgElements.forEach(el => {
-    el.addEventListener('click', () => {
-      const letter = el.getAttribute('data-letter');
-      if (letter) {
-        window.location.href = `vocabulario.html?letra=${letter}`;
-      }
-    });
-    el.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        el.click();
-      }
-    });
+  // 5. El evento de clic y teclado ahora se aplica a la única imagen.
+  letterImage.addEventListener('click', () => {
+    const letter = letterImage.getAttribute('data-letter');
+    if (letter) {
+      window.location.href = `vocabulario.html?letra=${letter}`;
+    }
   });
 
-  displayLetters();
+  letterImage.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      letterImage.click();
+    }
+  });
+
+  // Carga la primera letra al iniciar la página.
+  displayLetter();
 });

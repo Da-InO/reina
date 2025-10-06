@@ -53,7 +53,6 @@
     #eco-content {
       margin-top: 40px;
       display: flex;
-      gap: 10px;
       justify-content: center;
       flex-wrap: nowrap;
       padding-bottom: 10px;
@@ -62,7 +61,7 @@
     .letter {
       cursor: pointer;
       max-height: 22vw;
-      transition: transform 0.3s;
+      transition: transform 0.3s, opacity 0.3s;
       flex-shrink: 0;
     }
     .letter:hover {

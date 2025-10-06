@@ -34,37 +34,37 @@ const text = document.getElementById('text');
 
 const slides = [
   {
-    src: "imagenes/Happy_Book.svg",
+    src: "imagenes/Happy_Book.png",
     alt: "Ilustración Happy Book",
     text: "¡Vamos a aprender jugando!",
     link: "eco-aventura.html"
   },
   {
-    src: "imagenes/karaoke.svg",
+    src: "imagenes/karaoke.png",
     alt: "Ilustración Karaoke",
     text: "¡Hora del karaoke!",
     link: "karaoke.html"
   },
   {
-    src: "imagenes/cuentos.svg",
+    src: "imagenes/cuentos.png",
     alt: "Ilustración Cuentos",
     text: "Escucha y disfruta cuentos",
     link: "cuentos.html"
   },
   {
-    src: "imagenes/adivinanzas.svg",
+    src: "imagenes/adivinanzas.png",
     alt: "Ilustración adivinanzas",
     text: "Piensa y adivina ",
     link: "adivinanzas.html"
   },
   {
-    src: "imagenes/sonidos.svg",
+    src: "imagenes/sonidos.png",
     alt: "Ilustración sonidos",
     text: "Escucha y aprende sonidos",
     link: "sonidos.html"
   },
   {
-    src: "imagenes/trabalenguas.svg",
+    src: "imagenes/trabalenguas.png",
     alt: "Ilustración trabalenguas",
     text: "Repite y repite trabalenguas",
     link: "trabalenguas.html"

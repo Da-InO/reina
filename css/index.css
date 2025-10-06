@@ -109,6 +109,23 @@ a.back-button svg {
   justify-content: center;
 }
 
+.illustration {
+  margin-top: 60px;
+  position: relative;
+  /* más grande, pero adaptable */
+  max-width: clamp(520px, 50vw, 980px);
+  max-height: 55vh;
+
+  filter: none;
+  z-index: 10;
+  transition: opacity 0.5s ease, transform 0.3s ease;
+  cursor: pointer;
+
+  /* un pelín más de zoom que antes */
+  transform: scale(1.35);
+  animation: slideZoom 0.6s ease-in-out;
+}
+
 @keyframes dropIn {
   0% {
     opacity: 0;
@@ -127,23 +144,6 @@ a.back-button svg {
   font-weight: 700;
 }
 
-.illustration {
-  margin-top: 20px;
-  position: relative;
-  /* más grande, pero adaptable */
-  max-width: clamp(520px, 50vw, 980px);
-  max-height: 72vh;
-
-  filter: none;
-  z-index: 10;
-  transition: opacity 0.5s ease, transform 0.3s ease;
-  cursor: pointer;
-
-  /* un pelín más de zoom que antes */
-  transform: scale(1.35);
-  animation: slideZoom 0.6s ease-in-out;
-}
-
 /* En pantallas pequeñas, que no se salga */
 @media (max-width: 900px) {
   .illustration {
@@ -152,7 +152,6 @@ a.back-button svg {
     transform: scale(1.15);
   }
 }
-
 
 #logout {
   margin-top: 10px;

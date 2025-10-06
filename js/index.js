@@ -33,45 +33,23 @@ const illustration = document.getElementById('illustration');
 const text = document.getElementById('text');
 
 const slides = [
-  {
-    src: "imagenes/Happy_Book.png",
-    alt: "Ilustración Happy Book",
-    text: "¡Vamos a aprender jugando!",
-    link: "eco-aventura.html"
-  },
-  {
-    src: "imagenes/karaoke.png",
-    alt: "Ilustración Karaoke",
-    text: "¡Hora del karaoke!",
-    link: "karaoke.html"
-  },
-  {
-    src: "imagenes/cuentos.png",
-    alt: "Ilustración Cuentos",
-    text: "Escucha y disfruta cuentos",
-    link: "cuentos.html"
-  },
-  {
-    src: "imagenes/adivinanzas.png",
-    alt: "Ilustración adivinanzas",
-    text: "Piensa y adivina ",
-    link: "adivinanzas.html"
-  },
-  {
-    src: "imagenes/sonidos.png",
-    alt: "Ilustración sonidos",
-    text: "Escucha y aprende sonidos",
-    link: "sonidos.html"
-  },
-  {
-    src: "imagenes/trabalenguas.png",
-    alt: "Ilustración trabalenguas",
-    text: "Repite y repite trabalenguas",
-    link: "trabalenguas.html"
-  }
+  { src: "imagenes/Happy_Book.png", alt: "Ilustración Happy Book", text: "¡Vamos a aprender jugando!", link: "eco-aventura.html" },
+  { src: "imagenes/karaoke.png", alt: "Ilustración Karaoke", text: "¡Hora del karaoke!", link: "karaoke.html" },
+  { src: "imagenes/cuentos.png", alt: "Ilustración Cuentos", text: "Escucha y disfruta cuentos", link: "cuentos.html" },
+  { src: "imagenes/adivinanzas.png", alt: "Ilustración adivinanzas", text: "Piensa y adivina", link: "adivinanzas.html" },
+  { src: "imagenes/sonidos.png", alt: "Ilustración sonidos", text: "Escucha y aprende sonidos", link: "sonidos.html" },
+  { src: "imagenes/trabalenguas.png", alt: "Ilustración trabalenguas", text: "Repite y repite trabalenguas", link: "trabalenguas.html" }
 ];
 
+// --- Nuevo: detectar parámetro de slide ---
+const params = new URLSearchParams(window.location.search);
+const slideName = params.get("slide");
 let currentIndex = 0;
+
+if (slideName) {
+  const found = slides.findIndex(s => s.link.includes(slideName));
+  if (found >= 0) currentIndex = found;
+}
 
 function fadeOutIn(element, newContent, isImage = false) {
   element.style.opacity = 0;
@@ -102,7 +80,7 @@ function updateSlide() {
   fadeOutIn(text, slide.text);
 }
 
-// Bucle infinito al presionar izquierda o derecha
+// Navegación izquierda/derecha
 btnLeft.addEventListener('click', () => {
   btnLeft.classList.add('animate-left');
   setTimeout(() => btnLeft.classList.remove('animate-left'), 400);
@@ -117,13 +95,11 @@ btnRight.addEventListener('click', () => {
   updateSlide();
 });
 
-// Ir al enlace al hacer clic en la ilustración
+// Ir al enlace al hacer clic
 illustration.style.cursor = 'pointer';
 illustration.addEventListener('click', () => {
   const slide = slides[currentIndex];
-  if (slide.link) {
-    window.location.href = slide.link;
-  }
+  if (slide.link) window.location.href = slide.link;
 });
 
 // Cerrar sesión
@@ -132,5 +108,5 @@ document.getElementById('logout').addEventListener('click', () => {
   window.location.href = 'login.html';
 });
 
-// Mostrar primer slide al cargar
+// Mostrar slide inicial
 updateSlide();

@@ -21,38 +21,10 @@
       /* ----- FIN DE CAMBIOS ----- */
 
       margin: 0;
-      padding: 20px;
       color: #e67e22;
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-
-    a.back-button {
-      padding-top: 20px;
-      align-self: flex-start;
-      margin-bottom: 15px;
-      font-weight: 900;
-      font-size: 1.5rem;
-      color: #f39c12;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      user-select: none;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-
-    a.back-button:hover {
-      color: #e67e22;
-    }
-
-    a.back-button svg {
-      width: 36px;
-      height: 36px;
-      fill: #f39c12;
-      flex-shrink: 0;
     }
 
     h1 {
@@ -63,13 +35,13 @@
       font-weight: 700;
     }
     
-      .story-image {
-      max-width: 60vw;  /* 50% del ancho de la pantalla */
-      height: auto;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.3s;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    .story-image {
+    max-width: 60vw;  /* 50% del ancho de la pantalla */
+    height: auto;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
     .Cuentos-main {
       display: flex;

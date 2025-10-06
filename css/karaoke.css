@@ -11,22 +11,6 @@
       align-items: center;
     }
 
-    a.back-button {
-      padding-top: 20px;
-      align-self: flex-start;
-      margin-bottom: 15px;
-      font-weight: 900;
-      font-size: 1.5rem;
-      color: #f39c12;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      user-select: none;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-
   /* Estilos generales del karaoke */
   .karaoke-main {
       display: flex;
@@ -77,17 +61,6 @@
 
     #retry-button:hover {
         background-color: #e67e22;
-    }
-    
-    a.back-button:hover {
-      color: #e67e22;
-    }
-
-    a.back-button svg {
-      width: 36px;
-      height: 36px;
-      fill: #f39c12;
-      flex-shrink: 0;
     }
     
     #Titulo{

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,29 +8,37 @@
     <link rel="stylesheet" href="css/karaoke.css">
     <link rel="icon" href="iconos/icono.ico" type="image/x-icon"> <!-- Ícono actualizado -->
 </head>
+
 <body>
     <a href="index.html" class="back-button" aria-label="Volver al inicio">
         <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M15 18l-6-6 6-6" stroke="#f39c12" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M15 18l-6-6 6-6" stroke="#f39c12" stroke-width="2" fill="none" stroke-linecap="round"
+                stroke-linejoin="round" />
         </svg>
         Volver
     </a>
     <main class="karaoke-main">
         <h1 id="Titulo">Karaoke Mágico</h1>
+
         <div id="karaoke-container">
-            <img id="start-karaoke" src="imagenes/raton.jpg" alt="Iniciar Karaoke: Rolo Ratón" class="karaoke-image">
+            <video id="start-karaoke-video" class="karaoke-video-intro" autoplay loop muted playsinline>
+                <source src="video/video_transparente.webm" type="video/webm">
+                Tu navegador no soporta videos.
+            </video>
         </div>
+
         <video id="karaoke-video" style="width: 76%; max-height: 550px; display: none;" muted>
             <source src="video/Rolo Ratón.mp4" type="video/mp4">
             Tu navegador no soporta el elemento de video.
         </video>
         <div id="karaoke-content" style="text-align: center; margin-top: 1rem; display: none;">
-            <div id="karaoke-phrase" style="margin-bottom: 1rem;"></div> <!-- Contenedor para las frases -->
+            <div id="karaoke-phrase" style="margin-bottom: 1rem;"></div>
             <p id="karaoke-feedback">Repite la frase para continuar.</p>
-            <button id="retry-button" style="display: none;">Intentar de nuevo</button> <!-- Botón para reintentar -->
+            <button id="retry-button" style="display: none;">Intentar de nuevo</button>
         </div>
     </main>
-    
+
     <script src="js/karaoke.js" type="module"></script> <!-- Cargar como módulo -->
 </body>
+
 </html>

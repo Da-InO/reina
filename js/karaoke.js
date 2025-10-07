@@ -1,33 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // ELEMENTOS DEL DOM
     const karaokeVideo = document.getElementById("karaoke-video");
-    const startKaraokeImage = document.getElementById("start-karaoke");
     const karaokeContent = document.getElementById("karaoke-content");
-    const karaokePhrase = document.getElementById("karaoke-phrase"); // Contenedor para las frases
+    const karaokePhrase = document.getElementById("karaoke-phrase");
     const karaokeFeedback = document.getElementById("karaoke-feedback");
     const retryButton = document.getElementById("retry-button");
-    
+
+    // CORRECTO: Apuntamos al contenedor del video de inicio
+    const startKaraokeContainer = document.getElementById("karaoke-container");
+
+    // ... (El resto del código como 'pausePoints' y 'recognition' no cambia) ...
     const pausePoints = [
         {
             time: 27,
-            phrases: [
-                "Rolo ratón",
-                "Rolo ratón",
-                "pasa el rato en un rincon",
-                "come rosquillas",
-                "sobre una silla",
-                "con Roberto y con Ramón"
-            ]
+            phrases: ["Rolo ratón", "Rolo ratón", "pasa el rato en un rincon", "come rosquillas", "sobre una silla", "con Roberto y con Ramón"]
         },
         {
             time: 63,
-            phrases: [
-                "Rolo ratón",
-                "Rolo ratón",
-                "pasa el rato en un rincon",
-                "come rosquillas",
-                "sobre una silla",
-                "con Roberto y con Ramón"
-            ]
+            phrases: ["Rolo ratón", "Rolo ratón", "pasa el rato en un rincon", "come rosquillas", "sobre una silla", "con Roberto y con Ramón"]
         }
     ];
 
@@ -37,117 +27,82 @@ document.addEventListener("DOMContentLoaded", () => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
         karaokeFeedback.textContent = "Tu navegador no soporta el reconocimiento de voz.";
-        startKaraokeImage.style.display = "none";
+        if(startKaraokeContainer) startKaraokeContainer.style.display = "none";
         return;
     }
 
     const recognition = new SpeechRecognition();
     recognition.lang = "es-ES";
-    recognition.interimResults = true;
-
-    // Función para normalizar texto
-    const normalizeText = (text) => {
-        return text
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .trim();
-    };
-    // Función para mostrar las frases divididas
-    const displayPhrases = (phrases) => {
-        karaokePhrase.innerHTML = phrases
-            .map((phrase, index) => `<span class="karaoke-phrase" data-index="${index}">${phrase}</span>`)
-            .join(" ");
-    };
-
-    // Manejar clic en la imagen para iniciar el karaoke
-    startKaraokeImage.addEventListener("click", () => {
-        startKaraokeImage.style.display = "none";
+    recognition.continuous = true;
+    recognition.interimResults = false;
+    
+    // CORRECTO: El evento de clic ahora está en el contenedor del video
+    startKaraokeContainer.addEventListener("click", () => {
+        startKaraokeContainer.style.display = "none"; // Ocultamos el contenedor entero
         karaokeVideo.style.display = "block";
         karaokeContent.style.display = "block";
         karaokeVideo.muted = false;
         karaokeVideo.play();
         karaokeFeedback.textContent = "¡Canta cuando el video se detenga!";
     });
+    
+    // --- AQUÍ VA EL RESTO DEL CÓDIGO JS SIN CAMBIOS ---
+    // (timeupdate, onresult, onerror, etc.)
+    const normalizeText = (text) => {
+        return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+    };
 
-    // Manejar los puntos de pausa en el video
+    const displayPhrases = (phrases) => {
+        karaokePhrase.innerHTML = phrases.map((phrase, index) => `<span class="karaoke-phrase" data-index="${index}">${phrase}</span>`).join(" ");
+    };
+
     karaokeVideo.addEventListener("timeupdate", () => {
-        if (currentPauseIndex < pausePoints.length) {
-            const pausePoint = pausePoints[currentPauseIndex];
-            if (Math.floor(karaokeVideo.currentTime) === pausePoint.time) {
-                karaokeVideo.pause();
-                currentPhraseIndex = 0;
-                displayPhrases(pausePoint.phrases); // Mostrar las frases
-                karaokeFeedback.textContent = "Escuchando...";
-                retryButton.style.display = "none";
-                recognition.start();
-            }
-        }
-    });
-
-    // Manejar el resultado del reconocimiento de voz
-    recognition.addEventListener("result", (event) => {
-        const transcript = normalizeText(event.results[0][0].transcript);
-        const phrases = pausePoints[currentPauseIndex].phrases;
-        const currentPhrase = normalizeText(phrases[currentPhraseIndex]);
-
-        console.log(`Texto reconocido: "${transcript}"`);
-        console.log(`Frase esperada: "${currentPhrase}"`);
-
-        const similarity = calculateSimilarity(transcript, currentPhrase);
-        console.log(`Similitud: ${similarity}`);
-
-        if (similarity > 0.7) {
-            const phraseElements = document.querySelectorAll(".karaoke-phrase");
-            const currentElement = phraseElements[currentPhraseIndex];
-            if (currentElement) {
-                currentElement.classList.add("correct-phrase");
-            }
-
-            currentPhraseIndex++;
-            if (currentPhraseIndex === phrases.length) {
-                karaokeFeedback.textContent = "¡Correcto! Continuando...";
-                currentPauseIndex++;
-                recognition.stop();
-                karaokeVideo.play();
-            } else {
-                karaokeFeedback.textContent = `¡Bien! Ahora di: "${phrases[currentPhraseIndex]}"`;
-            }
-        } else {
-            karaokeFeedback.textContent = `Escuché: "${transcript}". Intenta de nuevo.`;
-        }
-    });
-
-    recognition.addEventListener("error", (event) => {
-        karaokeFeedback.textContent = `Error: ${event.error}`;
-        retryButton.style.display = "block";
-    });
-
-    recognition.addEventListener("end", () => {
-        if (currentPhraseIndex < pausePoints[currentPauseIndex].phrases.length) {
+        if (currentPauseIndex >= pausePoints.length) return;
+        const pausePoint = pausePoints[currentPauseIndex];
+        if (Math.abs(karaokeVideo.currentTime - pausePoint.time) < 0.5 && !karaokeVideo.paused) {
+            karaokeVideo.pause();
+            currentPhraseIndex = 0;
+            displayPhrases(pausePoint.phrases);
+            karaokeFeedback.textContent = "¡Tu turno! Repite la primera frase.";
+            retryButton.style.display = "none";
             recognition.start();
         }
     });
 
+    recognition.onresult = (event) => {
+        const last = event.results.length - 1;
+        const transcript = normalizeText(event.results[last][0].transcript);
+        const phrases = pausePoints[currentPauseIndex].phrases;
+        const currentPhrase = normalizeText(phrases[currentPhraseIndex]);
+
+        if (transcript.includes(currentPhrase)) {
+            const phraseElements = document.querySelectorAll(".karaoke-phrase");
+            if (phraseElements[currentPhraseIndex]) {
+                phraseElements[currentPhraseIndex].style.color = "#2ecc71";
+            }
+            currentPhraseIndex++;
+            if (currentPhraseIndex >= phrases.length) {
+                karaokeFeedback.textContent = "¡Excelente! Continuando...";
+                currentPauseIndex++;
+                recognition.stop();
+                setTimeout(() => karaokeVideo.play(), 1000);
+            } else {
+                karaokeFeedback.textContent = `¡Muy bien! Ahora la siguiente...`;
+            }
+        } else {
+            karaokeFeedback.textContent = `Escuché: "${transcript}". Inténtalo de nuevo.`;
+            karaokeContent.animate([{ transform: 'translateX(-5px)' }, { transform: 'translateX(5px)' }, { transform: 'translateX(0)' }], { duration: 300 });
+        }
+    };
+    
+    recognition.onerror = (event) => {
+        karaokeFeedback.textContent = `Error de micrófono: ${event.error}. Intenta de nuevo.`;
+        retryButton.style.display = "block";
+    };
+
     retryButton.addEventListener("click", () => {
-        karaokeFeedback.textContent = "Escuchando...";
         retryButton.style.display = "none";
+        karaokeFeedback.textContent = "Escuchando...";
         recognition.start();
     });
-
-    const calculateSimilarity = (str1, str2) => {
-        const longer = str1.length > str2.length ? str1 : str2;
-        const shorter = str1.length > str2.length ? str2 : str1;
-        const longerLength = longer.length;
-
-        if (longerLength === 0) return 1.0;
-
-        let editDistance = 0;
-        for (let i = 0; i < shorter.length; i++) {
-            if (shorter[i] !== longer[i]) editDistance++;
-        }
-        editDistance += longerLength - shorter.length;
-
-        return (longerLength - editDistance) / longerLength;
-    };
 });

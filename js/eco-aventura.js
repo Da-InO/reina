@@ -1,8 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const allLetters = [
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-    'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-  ];
+  
+const allLetters = [
+  // Etapa 1
+  'A', 'E', 'I', 'O', 'U',
+  // Etapa 2
+  'M', 'P', 'L', 'S', 'T',
+  // Etapa 3
+  'N', 'D', 'F',
+  // Etapa 4
+  'G', 'C', 'B', 'V', 'R',
+  // Etapa 5
+  'J', 'H', 'Q', 'Ñ', 'Y', 'Z', 'X', 'RR', 'CH'
+];
+
 
   const letterImage = document.getElementById('letterImage');
   const btnLeft = document.getElementById('btnLeft');

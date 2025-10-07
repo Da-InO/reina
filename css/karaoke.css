@@ -39,6 +39,12 @@ a.back-button svg { width: 36px; height: 36px; fill: #f39c12; flex-shrink: 0; }
     justify-content: center;
     align-items: center;
 }
+  /* Estilos generales del karaoke */
+  .karaoke-main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
 
 .karaoke-video-intro {
     width: 100%;
@@ -56,3 +62,37 @@ a.back-button svg { width: 36px; height: 36px; fill: #f39c12; flex-shrink: 0; }
 #karaoke-feedback { font-family: 'Patrick Hand', cursive; text-shadow: 1px 1px 0 #000; font-size: 1.3rem; }
 #retry-button { padding: 10px 25px; background-color: #ffffff; border-radius: 50px; font-size: 1rem; cursor: pointer; transition: background-color 0.3s; margin: 10px auto; border: 2px solid #f39c12; color: #e67e22; }
 #retry-button:hover { background-color: #f39c12; color: #ffffff; }
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+  #karaoke-phrase {
+      font-family: 'Patrick Hand', cursive;
+      text-shadow: 1px 1px 0 #000;
+      font-size: 1.3rem; /* Un poco más grande para mejor lectura */
+  }
+
+  #karaoke-feedback {
+      font-family: 'Patrick Hand', cursive;
+      text-shadow: 1px 1px 0 #000;
+      font-size: 1.3rem;
+  }
+
+  /* Botón */
+  #retry-button {
+    
+      padding: 10px 25px;
+      background-color: #ffffff;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin: 10px auto;
+  }
+
+    #retry-button:hover {
+        background-color: #e67e22;
+    }
+    
+    #Titulo{
+      font-size: 40px;
+      margin-top: 0px;
+    }

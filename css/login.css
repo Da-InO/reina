@@ -51,7 +51,7 @@ body.popup-active button:not(.add-fab) {
 }
 body.popup-active .popup-container{ bottom:0; }
 
-.popup-content h2{ font-size:1.8rem; color:#333; margin-bottom:15px; text-align:center; }
+.popup-content h2{ font-size:1.8rem; color:#fcbd43; margin-bottom:15px; text-align:center; }
 
 /* ---------- PERFILES (centrado) ---------- */
 .perfil-row{
@@ -68,7 +68,7 @@ body.popup-active .popup-container{ bottom:0; }
 .perfil{ text-align:center; }
 .perfil-img{ width:80px; height:80px; border-radius:12px; object-fit:cover; border:2px solid #ccc; transition:transform .3s; }
 .perfil-img:hover{ transform:scale(1.08); }
-.perfil p{ margin:6px 0 0; font-size:1rem; color:#333; }
+.perfil p{ margin:6px 0 0; font-size:1rem; color:#fcbd43; }
 
 /* ---------- Árboles ---------- */
 .arbol{ position:absolute; bottom:0; width:380px; height:auto; z-index:1; opacity:0; transition:opacity .5s ease, transform .5s ease; }

@@ -36,8 +36,11 @@ button:not(.add-fab):hover { background:#e67e22; }
 @keyframes floatZ{ 0%{transform:translateY(0);opacity:0;} 30%{opacity:1;} 100%{transform:translateY(-80px);opacity:0;} }
 
 /* ---------- POPUP ---------- */
-body.popup-active h1, body.popup-active input, body.popup-active button {
-  transform: translateY(-80px); transition: transform .5s ease;
+body.popup-active h1,
+body.popup-active input,
+body.popup-active button:not(.add-fab) {
+  transform: translateY(-80px);
+  transition: transform .5s ease;
 }
 .popup-container{
   position:fixed; bottom:-100%; left:0; right:0;
@@ -53,7 +56,7 @@ body.popup-active .popup-container{ bottom:0; }
 /* ---------- PERFILES (centrado) ---------- */
 .perfil-row{
   display:flex;
-  justify-content:center;      /* centrado */
+  justify-content:center;
   align-items:flex-end;
   gap:15px;
   padding-left:0;
@@ -79,7 +82,6 @@ body.popup-active .popup-container{ bottom:0; }
   100%{ transform: translateY(0); }
 }
 
-/* Forzar imagen del OVNI en TODOS los estados */
 .add-fab,
 .add-fab:hover,
 .add-fab:focus,
@@ -90,13 +92,13 @@ body.popup-active .popup-container{ bottom:0; }
   width: 110px;
   height: 110px;
   padding: 0;
-  border: none !important;           /* sin borde */
+  border: none !important;
   outline: none;
   background: url('../imagenes/perfiles/alienbutt.png') center / contain no-repeat transparent !important;
-  color: transparent !important;      /* por si algún estilo global intenta pintar texto */
+  color: transparent !important;
   cursor: pointer;
   z-index: 120;
-  filter: drop-shadow(0 14px 20px rgba(0,0,0,.18));  /* efecto de “volando” */
+  filter: drop-shadow(0 14px 20px rgba(0,0,0,.18));
   animation: ufoFloat 3.2s ease-in-out infinite;
   transition: transform .15s ease;
 }
@@ -107,7 +109,7 @@ body.popup-active .popup-container{ bottom:0; }
 /* Panel lateral */
 .side-panel{
   position: fixed;
-  top: 92px;               /* debajo del botón */
+  top: 92px;
   left: 18px;
   width: 360px; max-width: 90vw;
   padding: 16px;
@@ -125,7 +127,7 @@ body.popup-active .popup-container{ bottom:0; }
 .side-panel .field{ display:flex; flex-direction:column; gap:6px; margin-bottom:10px; text-shadow:none; }
 .side-panel label{ color:#333; font-size:1rem; text-align:left; }
 .side-panel input, .side-panel select{
-  width:100%; font-size:1rem; padding:5px; border-radius:px; border:1px solid #ccc; background:#fff;
+  width:100%; font-size:1rem; padding:5px; border-radius:8px; border:1px solid #ccc; background:#fff;
 }
 .side-panel .actions{ display:flex; gap:10px; margin-top:6px; }
 .side-panel .actions .primary{ flex:1; background:#f39c12; color:#fff; border:none; }
@@ -137,4 +139,63 @@ body.popup-active .popup-container{ bottom:0; }
 @media (max-width: 900px){
   .add-fab{ top: 12px; left: 12px; width: 90px; height: 90px; }
   .side-panel{ top: 80px; left: 12px; width: calc(100vw - 24px); }
+}
+
+/* ---------- ANIMACIÓN SPINNER-TO-CHECKMARK ---------- */
+
+/* Estilo base para el botón cuando está en proceso */
+.side-panel .actions .primary.loading,
+.side-panel .actions .primary.success {
+    position: relative;
+    color: transparent; /* Ocultamos el texto original */
+    transition: color 0.3s ease;
+}
+
+/* El pseudo-elemento que será el spinner y luego el check */
+.side-panel .actions .primary.loading::after,
+.side-panel .actions .primary.success::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Transiciones para la transformación de spinner a check */
+    transition: width 0.2s ease, height 0.2s ease, border-width 0.2s ease, transform 0.3s ease-out;
+}
+
+/* Estado de carga: SPINNER */
+.side-panel .actions .primary.loading::after {
+    margin-top: -12px;
+    margin-left: -12px;
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* Animación del spinner */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Estado de éxito: CHECKMARK */
+.side-panel .actions .primary.success::after {
+    margin-top: -12px; 
+    margin-left: -6px;
+    width: 8px; /* Ancho de la línea del check */
+    height: 16px; /* Alto de la línea del check */
+    border: solid #ffffff;
+    border-width: 0 4px 4px 0; /* Esto forma la 'L' del check */
+    border-radius: 0;
+    transform: rotate(45deg); /* Gira la 'L' para que parezca un check */
+    animation: none; /* Detenemos la animación de giro */
+}
+
+/* Estilo para cuando los elementos están deshabilitados */
+.side-panel button:disabled, .side-panel input:disabled, .side-panel select:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
 }

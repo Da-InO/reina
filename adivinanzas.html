@@ -5,17 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tiempo de adivinar</title>
     <link rel="stylesheet" href="css/adivinanzas.css">
-     <link rel="stylesheet" href="css/BotonVolver.css">
-    <link rel="icon" href="iconos/icono.ico" type="image/x-icon"> <!-- Ícono actualizado -->
+    <link rel="stylesheet" href="css/BotonVolver.css">
+    <link rel="icon" href="iconos/icono.ico" type="image/x-icon">
 </head>
 <body>
+    <!-- Botón para volver al inicio -->
     <a href="index.html?slide=adivinanzas" class="back-button" aria-label="Volver al inicio">
         <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M15 18l-6-6 6-6" stroke="#f39c12" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         Volver
     </a>
-    
-    <script src="js/adivinanzas.js" type="module"></script> <!-- Cargar como módulo -->
+
+    <!-- Contenedor para la adivinanza -->
+    <div class="adivinanza-container">
+        <!-- El texto de la adivinanza -->
+        <div id="adivinanza-texto" class="adivinanza-texto">
+            ¡Vamos a adivinar! Tengo agujas pero no pincho, ¿qué soy?
+        </div>
+
+        <!-- Imágenes de posibles respuestas -->
+        <div class="respuestas">
+            <img src="imagenes/almohada.jpg" alt="almohada" class="respuesta" data-correct="false">
+            <img src="imagenes/reloj.jpg" alt="reloj" class="respuesta" data-correct="true">
+            <img src="imagenes/teclado.jpg" alt="teclado" class="respuesta" data-correct="false">
+        </div>
+    </div>
+
+    <!-- Cuadro flotante de resultado -->
+    <div id="resultado" class="resultado" style="display:none;">
+        <div class="resultado-overlay"></div> <!-- Filtro de opacidad en el fondo -->
+        <div class="resultado-content">
+            <img id="resultado-icon" src="" alt="Resultado" class="resultado-icon">
+            <p id="resultado-texto">¡Correcto!</p>
+        </div>
+    </div>
+
+    <!-- Script para cargar la lógica de las adivinanzas -->
+    <script src="js/adivinanzas.js" type="module"></script>
 </body>
 </html>

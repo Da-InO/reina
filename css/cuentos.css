@@ -6,7 +6,7 @@
       text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
 
       /* ----- INICIO DE CAMBIOS ----- */
-      background-image: url('../imagenes/fondo22.png');
+      background-image: url('../imagenes/fondotopo.png');
       /* 1. Añade tu imagen */
       background-size: cover;
       /* 2. Hace que la imagen cubra toda la pantalla */

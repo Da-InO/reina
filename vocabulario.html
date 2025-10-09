@@ -16,24 +16,20 @@
     Volver
   </a>
 
-  <!-- Título y contador -->
-  <h1 style="text-align: center;">Vocabulario</h1>
-  <div id="progress-counter" style="position: absolute; top: 20px; right: 30px; font-weight: bold; font-size: 1.2rem; color: #f39c12;"></div>
+  <div class="level-indicator">
+    <span id="nivel-actual"></span>
+    <span id="level-emoji"></span>
+  </div>
 
-  <!-- Contenedor dinámico de palabra -->
-  <section id="dynamic-vocabulary" class="vocabulario-container" style="text-align: center; margin-top: 50px;">
-    <h2 id="nivel-actual" style="color: #f39c12;"></h2>
-    <div id="palabra-actual" class="palabra" style="font-size: 3rem; margin-bottom: 20px;">Agua</div>
-    <button id="btn-siguiente" style="padding: 10px 20px; font-size: 1rem; cursor: pointer;">Siguiente</button>
+  <h1>Pronunciación</h1>
+
+  <section id="dynamic-vocabulary" class="vocabulario-container">
+    <div class="palabra-card">
+      <img id="palabra-imagen" src="" alt="Imagen del vocabulario">
+      <div id="palabra-actual">Agua</div>
+    </div>
+    <button id="btn-siguiente">Siguiente</button>
   </section>
-
-  <!-- Ocultamos secciones existentes (solo estructural, no funcional) -->
-  <section class="letter-section" id="letter-A" hidden>
-    <!-- contenido oculto pero preservado -->
-  </section>
-
-  <section class="letter-section" id="letter-B" hidden></section>
-  <section class="letter-section" id="letter-C" hidden></section>
 
   <div id="message" aria-live="polite"></div>
   <div id="listen-message">🎤 ¡Escucha y repite!</div>

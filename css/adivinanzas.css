@@ -6,7 +6,6 @@ body {
     position: relative;
 }
 
-
 .adivinanza-container {
     display: flex;
     flex-direction: column;
@@ -16,7 +15,7 @@ body {
 }
 
 .adivinanza-texto {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: bold;
     color: #f39c12;
     background-color: #ffebcd;
@@ -26,25 +25,54 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Contenedor de las respuestas */
 .respuestas {
-    color: #f39c12;
     display: flex;
-    justify-content: space-around;
-    width: 80%;
-    margin-top: 20px;
+    justify-content: center; /* Centra horizontalmente el contenedor */
+    align-items: center; /* Centra verticalmente las imágenes */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    margin-top: 40px;
+    position: relative; /* Necesario para posicionar las imágenes de forma absoluta */
+    height: 300px; /* Altura fija para el contenedor */
 }
 
-.respuesta {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
+/* Estilo común para todas las respuestas */
+.respuesta1, .respuesta2, .respuesta3 {
+    height: 200px; /* Mantén la altura fija para todas las imágenes */
+    width: auto; /* Mantiene la proporción de la imagen */
+    object-fit: contain; /* Asegura que la imagen se ajuste sin recortarse */
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.2s;
+    position: absolute; /* Posicionamiento absoluto para control preciso */
 }
 
-.respuesta:hover {
-    transform: scale(1.1);
+/* Especificación para respuesta1 (centro vertical pero a la izquierda) */
+.respuesta1 {
+    left: 25%; /* Posiciona en el centro izquierdo de la página */
+    transform: translateX(-50%); /* Ajusta para centrar exactamente */
+}
+
+/* Especificación para respuesta2 (en el centro exacto) */
+.respuesta2 {
+    left: 50%; /* Centra horizontalmente */
+    transform: translateX(-50%); /* Ajusta para centrar exactamente */
+}
+
+/* Especificación para respuesta3 (centro vertical pero a la derecha) */
+.respuesta3 {
+    left: 75%; /* Posiciona en el centro derecho de la página */
+    transform: translateX(-50%); /* Ajusta para centrar exactamente */
+}
+
+/* Efecto hover para todas las imágenes */
+.respuesta1:hover, .respuesta2:hover, .respuesta3:hover {
+    transform: translateX(-50%) scale(1.05); /* Mantiene el centrado y agranda */
+}
+
+/* Para mantener la transformación en respuesta2 al hacer hover */
+.respuesta2:hover {
+    transform: translateX(-50%) scale(1.05);
 }
 
 /* Estilo para el cuadro flotante */

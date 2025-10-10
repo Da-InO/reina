@@ -20,15 +20,16 @@ const adivinanzas = [
         texto: "Cae pero nunca se rompe, ¿qué es?",
         respuestas: [
             { src: "imagenes/Adivinanzas/nieve.png", correct: true, alt: "nieve" },
-            { src: "imagenes/Adivinanzas/agua.png", correct: false, alt: "agua" },
+            { src: "imagenes/Adivinanzas/platano.png", correct: true, alt: "platano" },
+          //  { src: "imagenes/Adivinanzas/agua.png", correct: false, alt: "agua" },
             { src: "imagenes/Adivinanzas/piedra.png", correct: false, alt: "piedra" }
         ]
     },
     {
         texto: "Es redondo y brilla en el cielo, ¿qué es?",
         respuestas: [
-            { src: "imagenes/Adivinanzas/luna.png", correct: true, alt: "luna" },
-            { src: "imagenes/Adivinanzas/sol.png", correct: false, alt: "sol" },
+            { src: "imagenes/Adivinanzas/luna.png", correct: false, alt: "luna" },
+            { src: "imagenes/Adivinanzas/sol.png", correct: true, alt: "sol" },
             { src: "imagenes/Adivinanzas/estrella.png", correct: false, alt: "estrella" }
         ]
     },
@@ -45,7 +46,8 @@ const adivinanzas = [
         respuestas: [
             { src: "imagenes/Adivinanzas/arcoiris.png", correct: true, alt: "arcoiris" },
             { src: "imagenes/Adivinanzas/sol.png", correct: false, alt: "sol" },
-            { src: "imagenes/Adivinanzas/nube.png", correct: false, alt: "nube" }
+            { src: "imagenes/Adivinanzas/avion.png", correct: true, alt: "avion" },
+            //
         ]
     },
     {
@@ -61,7 +63,7 @@ const adivinanzas = [
         respuestas: [
             { src: "imagenes/Adivinanzas/coche.png", correct: true, alt: "coche" },
             { src: "imagenes/Adivinanzas/perro.png", correct: false, alt: "perro" },
-            { src: "imagenes/Adivinanzas/campana.png", correct: false, alt: "campana" }
+            { src: "imagenes/Adivinanzas/juguetes.png", correct: false, alt: "juguetes" },
         ]
     },
     {
@@ -76,7 +78,7 @@ const adivinanzas = [
         texto: "Me encuentro dentro de una caja, pero no soy una sorpresa, ¿qué soy?",
         respuestas: [
             { src: "imagenes/Adivinanzas/computadora.png", correct: true, alt: "computadora" },
-            { src: "imagenes/Adivinanzas/juguetes.png", correct: false, alt: "juguetes" },
+            { src: "imagenes/Adivinanzas/campana.png", correct: false, alt: "campana" },
             { src: "imagenes/Adivinanzas/bocadillos.png", correct: false, alt: "bocadillos" }
         ]
     },
@@ -92,7 +94,8 @@ const adivinanzas = [
         texto: "Vivo en el mar, pero no soy pez, ¿qué soy?",
         respuestas: [
             { src: "imagenes/Adivinanzas/ballena.png", correct: true, alt: "ballena" },
-            { src: "imagenes/Adivinanzas/delfin.png", correct: false, alt: "delfin" },
+            { src: "imagenes/Adivinanzas/nube.png", correct: false, alt: "nube" },
+            //
             { src: "imagenes/Adivinanzas/estrella-mar.png", correct: false, alt: "estrella mar" }
         ]
     },
@@ -124,7 +127,7 @@ const adivinanzas = [
         texto: "Soy invisible pero todo lo cubro, ¿qué soy?",
         respuestas: [
             { src: "imagenes/Adivinanzas/viento.png", correct: true, alt: "viento" },
-            { src: "imagenes/Adivinanzas/agua.png", correct: false, alt: "agua" },
+            { src: "imagenes/Adivinanzas/delfin.png", correct: false, alt: "delfin" },
             { src: "imagenes/Adivinanzas/luz.png", correct: false, alt: "luz" }
         ]
     }

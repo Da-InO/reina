@@ -28,10 +28,15 @@
       <img id="palabra-imagen" src="" alt="Imagen del vocabulario">
       <div id="palabra-actual">Agua</div>
     </div>
-    <button id="btn-siguiente">Siguiente</button>
   </section>
 
   <div id="message" aria-live="polite"></div>
   <div id="listen-message">🎤 ¡Escucha y repite!</div>
+
+  <div id="feedback-overlay" class="feedback-overlay">
+    <video id="feedback-video" muted playsinline></video>
+  </div>
+
+  <script type="module" src="js/vocabulario.js"></script>
 </body>
 </html>

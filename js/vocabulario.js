@@ -2,12 +2,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebas
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "TU_API_KEY",
-    authDomain: "TU_PROYECTO.firebaseapp.com",
-    projectId: "TU_PROYECTO",
-    storageBucket: "TU_PROYECTO.appspot.com",
-    messagingSenderId: "TU_SENDER_ID",
-    appId: "TU_APP_ID"
+    apiKey: "AIzaSyCIgbuAkRg8ZfecTlGRTqVatIvOxcYl3A",
+    authDomain: "aventurasonoramagica.firebaseapp.com",
+    projectId: "aventurasonoramagica",
+    storageBucket: "aventurasonoramagica.appspot.com",
+    messagingSenderId: "544708290123",
+    appId: "1:544708290123:web:ad5413929dd5fd12b68fce",
+    measurementId: "G-C753SEVD4D"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -20,32 +21,221 @@ const alumno = localStorage.getItem('reina_username') || 'Invitado';
 const message = document.getElementById('message');
 const listenMessage = document.getElementById('listen-message');
 const palabraElemento = document.getElementById('palabra-actual');
-const palabraImagen = document.getElementById('palabra-imagen'); // Elemento de imagen
-const contador = document.getElementById('progress-counter');
+const palabraImagen = document.getElementById('palabra-imagen');
 const btnSiguiente = document.getElementById('btn-siguiente');
 const nivelTitulo = document.getElementById('nivel-actual');
 const levelEmoji = document.getElementById('level-emoji');
+const palabraCard = document.querySelector('.palabra-card');
+
+const feedbackOverlay = document.getElementById('feedback-overlay');
+const feedbackVideo = document.getElementById('feedback-video');
 
 listenMessage.style.display = 'none';
 
-// ----- INICIO DE CAMBIOS -----
-// Nueva estructura de datos:
-// - Si una palabra tiene imagen, se define como un objeto.
-// - Si no tiene imagen, se deja como un simple texto (string).
-const palabrasPorNivel = {
-    facil: [
-        { palabra: 'Agua', imagen: 'imagenes/Agua_potable.jpg' },
-        'Ala',  // Esta palabra no tiene imagen todavía
-        'Ana',   // Esta tampoco
-        'Arco',
-        'Ave'
-    ],
-    intermedio: [
-        'Amigo', 'Azul', 'Aroma', 'Animal', 'Amarillo'
-    ],
-    dificil: [
-        'Abundante', 'Acelerado', 'Armonioso', 'Ambicioso', 'Absoluto'
-    ]
+// =============================================================
+// ===== INICIO DE LA NUEVA ESTRUCTURA DE DATOS DE VOCABULARIO =====
+// =============================================================
+
+const vocabularioCompleto = {
+    'A': {
+        facil: [
+            { palabra: 'Agua', imagen: 'imagenes/vocabulario/Agua_potable.webp' },
+            { palabra: 'Ala', imagen: 'imagenes/vocabulario/arbol.jpg' },
+            { palabra: 'Arco', imagen: 'imagenes/vocabulario/arco.jpg' },
+            { palabra: 'Ave', imagen: 'imagenes/vocabulario/ave.jpg' },
+            { palabra: 'Ana', imagen: 'imagenes/vocabulario/ana.jpg' }
+        ],
+        intermedio: [
+            { palabra: 'Amigo', imagen: 'imagenes/vocabulario/amigo.jpg' },
+            { palabra: 'Azul', imagen: 'imagenes/vocabulario/azul.jpg' },
+            { palabra: 'Aroma', imagen: 'imagenes/vocabulario/aroma.jpg' },
+            { palabra: 'Animal', imagen: 'imagenes/vocabulario/animal.jpg' },
+            { palabra: 'Amarillo', imagen: 'imagenes/vocabulario/amarillo.jpg' }
+        ],
+        dificil: [
+            { palabra: 'Abundante', imagen: 'imagenes/vocabulario/abundante.jpg' },
+            { palabra: 'Acelerado', imagen: 'imagenes/vocabulario/acelerado.jpg' },
+            { palabra: 'Armonioso', imagen: 'imagenes/vocabulario/armonioso.jpg' },
+            { palabra: 'Ambicioso', imagen: 'imagenes/vocabulario/ambicioso.jpg' },
+            { palabra: 'Absoluto', imagen: 'imagenes/vocabulario/absoluto.jpg' }
+        ]
+    },
+    'E': {
+        facil: [
+            { palabra: 'Elefante', imagen: 'imagenes/vocabulario/elefante.jpg' },
+            { palabra: 'Estrella', imagen: 'imagenes/vocabulario/estrella.jpg' },
+            { palabra: 'Escoba', imagen: 'imagenes/vocabulario/escoba.jpg' },
+            { palabra: 'Enano', imagen: 'imagenes/vocabulario/enano.jpg' },
+            { palabra: 'Espada', imagen: 'imagenes/vocabulario/espada.jpg' }
+        ],
+        intermedio: ['Ensalada', 'Edificio', 'Elegante', 'Estudiante', 'Equipo'],
+        dificil: ['Espectacular', 'Eficiente', 'Elaborado', 'Ecosistema', 'Eternidad']
+    },
+    'I': {
+        facil: [
+            { palabra: 'Isla', imagen: 'imagenes/isla.jpg' },
+            { palabra: 'Imán', imagen: 'imagenes/iman.jpg' },
+            { palabra: 'Iglesia', imagen: 'imagenes/iglesia.jpg' },
+            { palabra: 'Iglú', imagen: 'imagenes/iglu.jpg' },
+            { palabra: 'Idea', imagen: 'imagenes/idea.jpg' }
+        ],
+        intermedio: ['Iguana', 'Invierno', 'Inteligente', 'Importante', 'Incendio'],
+        dificil: ['Inolvidable', 'Imaginación', 'Independiente', 'Investigación', 'Infinito']
+    },
+    'O': {
+        facil: [
+            { palabra: 'Oso', imagen: 'imagenes/oso.jpg' },
+            { palabra: 'Ojo', imagen: 'imagenes/ojo.jpg' },
+            { palabra: 'Oveja', imagen: 'imagenes/oveja.jpg' },
+            { palabra: 'Ola', imagen: 'imagenes/ola.jpg' },
+            { palabra: 'Oro', imagen: 'imagenes/oro.jpg' }
+        ],
+        intermedio: ['Oreja', 'Oruga', 'Orquesta', 'Océano', 'Otoño'],
+        dificil: ['Omnipotente', 'Oportunidad', 'Organización', 'Ornamento', 'Obstáculo']
+    },
+    'U': {
+        facil: [
+            { palabra: 'Uva', imagen: 'imagenes/uva.jpg' },
+            { palabra: 'Uno', imagen: 'imagenes/uno.jpg' },
+            { palabra: 'Uña', imagen: 'imagenes/uña.jpg' },
+            { palabra: 'Urna', imagen: 'imagenes/urna.jpg' },
+            { palabra: 'Útil', imagen: 'imagenes/util.jpg' }
+        ],
+        intermedio: ['Universo', 'Uniforme', 'Urgente', 'Último', 'Ubicación'],
+        dificil: ['Ubicuidad', 'Usufructo', 'Unánime', 'Utilitario', 'Utopía']
+    },
+    'M': {
+        facil: [
+            { palabra: 'Mano', imagen: 'imagenes/mano.jpg' },
+            { palabra: 'Mamá', imagen: 'imagenes/mama.jpg' },
+            { palabra: 'Mesa', imagen: 'imagenes/mesa.jpg' },
+            { palabra: 'Moto', imagen: 'imagenes/moto.jpg' },
+            { palabra: 'Mapa', imagen: 'imagenes/mapa.jpg' }
+        ],
+        intermedio: ['Manzana', 'Montaña', 'Mochila', 'Martillo', 'Mariposa'],
+        dificil: ['Murciélago', 'Matemáticas', 'Magnífico', 'Melancolía', 'Metamorfosis']
+    },
+    'P': {
+        facil: [
+            { palabra: 'Papá', imagen: 'imagenes/papa.jpg' },
+            { palabra: 'Pato', imagen: 'imagenes/pato.jpg' },
+            { palabra: 'Perro', imagen: 'imagenes/perro.jpg' },
+            { palabra: 'Pan', imagen: 'imagenes/pan.jpg' },
+            { palabra: 'Pie', imagen: 'imagenes/pie.jpg' }
+        ],
+        intermedio: ['Pelota', 'Pintura', 'Playa', 'Puente', 'Princesa'],
+        dificil: ['Paralelepípedo', 'Perseverancia', 'Precipitación', 'Psicología', 'Planeta']
+    },
+    'L': {
+        facil: [
+            { palabra: 'Luna', imagen: 'imagenes/luna.jpg' },
+            { palabra: 'León', imagen: 'imagenes/leon.jpg' },
+            { palabra: 'Lápiz', imagen: 'imagenes/lapiz.jpg' },
+            { palabra: 'Lobo', imagen: 'imagenes/lobo.jpg' },
+            { palabra: 'Lata', imagen: 'imagenes/lata.jpg' }
+        ],
+        intermedio: ['Lámpara', 'Libro', 'Limón', 'Lengua', 'Lagarto'],
+        dificil: ['Luminiscente', 'Laberinto', 'Locuacidad', 'Longitudinal', 'Legislación']
+    },
+    'S': {
+        facil: [
+            { palabra: 'Sol', imagen: 'imagenes/sol.jpg' },
+            { palabra: 'Sapo', imagen: 'imagenes/sapo.jpg' },
+            { palabra: 'Sopa', imagen: 'imagenes/sopa.jpg' },
+            { palabra: 'Silla', imagen: 'imagenes/silla.jpg' },
+            { palabra: 'Seis', imagen: 'imagenes/seis.jpg' }
+        ],
+        intermedio: ['Serpiente', 'Sombrero', 'Semáforo', 'Sandía', 'Silencio'],
+        dificil: ['Sintetizador', 'Subterráneo', 'Simultáneo', 'Sostenibilidad', 'Significado']
+    },
+    // ... (se añadirían el resto de letras de forma similar)
+    'T': {
+        facil: [
+            { palabra: 'Taza', imagen: 'imagenes/taza.jpg' },
+            { palabra: 'Tigre', imagen: 'imagenes/tigre.jpg' },
+            { palabra: 'Tomate', imagen: 'imagenes/tomate.jpg' }
+        ],
+        intermedio: ['Teléfono', 'Tiburón', 'Tractor'],
+        dificil: ['Tecnología', 'Transformación', 'Transparente']
+    },
+    'D': {
+        facil: [
+            { palabra: 'Dado', imagen: 'imagenes/dado.jpg' },
+            { palabra: 'Dedo', imagen: 'imagenes/dedo.jpg' },
+            { palabra: 'Dos', imagen: 'imagenes/dos.jpg' }
+        ],
+        intermedio: ['Dinosaurio', 'Delfín', 'Diamante'],
+        dificil: ['Determinación', 'Desarrollo', 'Democracia']
+    },
+    'F': {
+        facil: [
+            { palabra: 'Foca', imagen: 'imagenes/foca.jpg' },
+            { palabra: 'Fuego', imagen: 'imagenes/fuego.jpg' },
+            { palabra: 'Foto', imagen: 'imagenes/foto.jpg' }
+        ],
+        intermedio: ['Fantasma', 'Fresa', 'Fábrica'],
+        dificil: ['Fenomenal', 'Filosofía', 'Fotografía']
+    },
+    'B': {
+        facil: [
+            { palabra: 'Bebé', imagen: 'imagenes/bebe.jpg' },
+            { palabra: 'Boca', imagen: 'imagenes/boca.jpg' },
+            { palabra: 'Barco', imagen: 'imagenes/barco.jpg' }
+        ],
+        intermedio: ['Ballena', 'Bicicleta', 'Bandera'],
+        dificil: ['Biblioteca', 'Biodegradable', 'Benevolencia']
+    },
+    'R': {
+        facil: [
+            { palabra: 'Ratón', imagen: 'imagenes/raton.jpg' },
+            { palabra: 'Rosa', imagen: 'imagenes/rosa.jpg' },
+            { palabra: 'Rana', imagen: 'imagenes/rana.jpg' }
+        ],
+        intermedio: ['Reloj', 'Regalo', 'Robot'],
+        dificil: ['Responsabilidad', 'Revolución', 'Resplandeciente']
+    },
+    'RR': {
+        facil: [
+            { palabra: 'Carro', imagen: 'imagenes/carro.jpg' },
+            { palabra: 'Perro', imagen: 'imagenes/perro.jpg' },
+            { palabra: 'Torre', imagen: 'imagenes/torre.jpg' }
+        ],
+        intermedio: ['Guitarra', 'Ferrocarril', 'Arroz'],
+        dificil: ['Desarrollo', 'Irreverente', 'Párrafo']
+    },
+    'C': {
+        facil: [
+            { palabra: 'Casa', imagen: 'imagenes/casa.jpg' },
+            { palabra: 'Cama', imagen: 'imagenes/cama.jpg' },
+            { palabra: 'Copa', imagen: 'imagenes/copa.jpg' }
+        ],
+        intermedio: ['Conejo', 'Caballo', 'Corazón'],
+        dificil: ['Comunicación', 'Conocimiento', 'Característica']
+    },
+    'CH': {
+        facil: [
+            { palabra: 'Chino', imagen: 'imagenes/chino.jpg' },
+            { palabra: 'Leche', imagen: 'imagenes/leche.jpg' },
+            { palabra: 'Ocho', imagen: 'imagenes/ocho.jpg' }
+        ],
+        intermedio: ['Chocolate', 'Mochila', 'Cuchara'],
+        dificil: ['Chimichurri', 'Rechoncho', 'Chicharrón']
+    },
+    'Q': {
+        facil: [
+            { palabra: 'Queso', imagen: 'imagenes/queso.jpg' }
+        ],
+        intermedio: ['Quince', 'Química', 'Paquete'],
+        dificil: ['Quirófano', 'Esquizofrénico', 'Aquiescencia']
+    },
+    'Ñ': {
+        facil: [
+            { palabra: 'Ñu', imagen: 'imagenes/ñu.jpg' },
+            { palabra: 'Piña', imagen: 'imagenes/piña.jpg' }
+        ],
+        intermedio: ['Montaña', 'Araña', 'Pañuelo'],
+        dificil: ['Añoranza', 'Engañar', 'Compañía']
+    }
 };
 
 const levelEmojis = {
@@ -53,7 +243,10 @@ const levelEmojis = {
     intermedio: '🤔',
     dificil: '🤯'
 };
-// ----- FIN DE CAMBIOS -----
+
+// =============================================================
+// ===== FIN DE LA NUEVA ESTRUCTURA DE DATOS =====
+// =============================================================
 
 const niveles = ['facil', 'intermedio', 'dificil'];
 let nivelActual = 0;
@@ -63,13 +256,23 @@ function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
 }
-const letra = getQueryParam('letra') || 'A';
+
+// ----- CAMBIO IMPORTANTE -----
+// Seleccionamos el grupo de palabras correcto basado en la letra de la URL
+const letra = getQueryParam('letra')?.toUpperCase() || 'A';
+const palabrasPorNivel = vocabularioCompleto[letra] || vocabularioCompleto['A'];
+// Si la letra no existe, usamos la 'A' por defecto.
 
 function mostrarPalabra() {
     const nivel = niveles[nivelActual];
     const lista = palabrasPorNivel[nivel];
-    const itemActual = lista[indicePalabra];
 
+    if (!lista || lista.length === 0) {
+        avanzarPalabra(); // Si un nivel no tiene palabras, lo salta.
+        return;
+    }
+
+    const itemActual = lista[indicePalabra];
     let palabra, imagen;
 
     if (typeof itemActual === 'object' && itemActual !== null) {
@@ -90,19 +293,14 @@ function mostrarPalabra() {
         palabraImagen.style.display = 'none';
     }
 
-    // ----- CÓDIGO AÑADIDO -----
     nivelTitulo.textContent = `Nivel ${nivel.charAt(0).toUpperCase() + nivel.slice(1)}`;
-    levelEmoji.textContent = levelEmojis[nivel]; // <-- Esta línea añade el emoji
-
-    // Opcional: Si quieres mantener el contador numérico
-    if (contador) {
-        contador.textContent = `${indicePalabra + 1} / ${lista.length}`;
-    }
+    levelEmoji.textContent = levelEmojis[nivel];
 }
 
-
 function avanzarPalabra() {
-    const lista = palabrasPorNivel[niveles[nivelActual]];
+    const nivel = niveles[nivelActual];
+    const lista = palabrasPorNivel[nivel] || [];
+
     indicePalabra++;
     if (indicePalabra < lista.length) {
         mostrarPalabra();
@@ -113,13 +311,20 @@ function avanzarPalabra() {
             mostrarPalabra();
         } else {
             palabraElemento.textContent = "🎉 ¡Has completado todo!";
-            palabraImagen.style.display = 'none'; // Ocultamos la imagen al final
-            contador.textContent = "";
-            nivelTitulo.textContent = "";
-            levelEmoji.textContent = "";
-            btnSiguiente.disabled = true;
+            palabraImagen.style.display = 'none';
+            nivelTitulo.textContent = "¡Felicidades!";
+            levelEmoji.textContent = "🏆";
         }
     }
+}
+
+// Función mejorada para limpiar texto
+function normalizeText(text) {
+    return text
+        .toLowerCase() // 1. Pone todo en minúsculas
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // 2. Quita acentos
+        .replace(/[.,!?;:()"]/g, "") // 3. QUITA SIGNOS DE PUNTUACIÓN (la clave del arreglo)
+        .trim(); // 4. Quita espacios al inicio y al final
 }
 
 function guardarResultado(palabra, letra, resultado) {
@@ -127,6 +332,20 @@ function guardarResultado(palabra, letra, resultado) {
     addDoc(collection(db, "practicas"), {
         alumno, palabra, letra, resultado, fecha
     }).catch(error => console.error("Error guardando resultado:", error));
+}
+
+function playFeedbackVideo(videoSrc, onEndedCallback) {
+  feedbackVideo.src = videoSrc;
+  feedbackOverlay.classList.add('show');
+  feedbackVideo.play();
+
+  // Escuchamos el evento 'ended' que se dispara cuando el video termina
+  feedbackVideo.onended = () => {
+    feedbackOverlay.classList.remove('show'); // Ocultamos el video
+    if (onEndedCallback) {
+      onEndedCallback(); // Ejecutamos la acción que queramos al final (como avanzar de palabra)
+    }
+  };
 }
 
 function iniciarReconocimiento() {
@@ -142,26 +361,33 @@ function iniciarReconocimiento() {
 
     listenMessage.style.display = 'block';
     message.textContent = "";
-
     recognition.start();
 
     recognition.onresult = (event) => {
-        const dicho = event.results[0][0].transcript.trim().toLowerCase();
+        const transcriptOriginal = event.results[0][0].transcript.trim();
+        const dicho = normalizeText(transcriptOriginal);
+        const palabraCorrecta = normalizeText(palabra);
+
         listenMessage.style.display = 'none';
 
-        if (dicho === palabra.toLowerCase()) {
-            message.textContent = `✅ ¡Correcto! Dijiste: "${dicho}"`;
+        if (dicho === palabraCorrecta) {
+            // SI ES CORRECTO
+            message.textContent = `✅ ¡Correcto!`;
             guardarResultado(palabra, letra, "correcto");
-            // Usamos un pequeño retraso para que el usuario vea el mensaje de "Correcto"
-            setTimeout(() => {
+            // Reproducimos el video de confeti y, CUANDO TERMINE, avanzamos de palabra
+            playFeedbackVideo('video/video_confeti_transparente.webm', () => {
                 avanzarPalabra();
-                message.textContent = ""; // Limpiamos el mensaje para la siguiente palabra
-            }, 1200);
+                message.textContent = "";
+            });
         } else {
-            message.textContent = `❌ Intenta de nuevo. Dijiste: "${dicho}"`;
+            // SI ES INCORRECTO
+            message.textContent = `❌ Intenta de nuevo. Dijiste: "${transcriptOriginal}"`;
             guardarResultado(palabra, letra, "incorrecto");
+            // Reproducimos el video de caritas tristes
+            playFeedbackVideo('video/video_lluvia_transparente.webm');
         }
     };
+
     recognition.onerror = (event) => {
         listenMessage.style.display = 'none';
         message.textContent = `⚠️ Error de micrófono. Asegúrate de darle permiso.`;
@@ -171,20 +397,18 @@ function iniciarReconocimiento() {
     };
 }
 
-btnSiguiente.addEventListener('click', () => {
+palabraCard.addEventListener('click', () => {
     const palabra = palabraElemento.textContent;
     const utterance = new SpeechSynthesisUtterance(palabra);
     utterance.lang = 'es-ES';
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(utterance);
-
-    // Pequeña pausa después de hablar para que el micro no se active tan rápido
     setTimeout(iniciarReconocimiento, 500);
 });
 
 // Inicialización
-if (!letra) {
-    window.location.href = 'index.html';
+if (!letra || !vocabularioCompleto[letra]) {
+    mostrarPalabra();
 } else {
     mostrarPalabra();
 }

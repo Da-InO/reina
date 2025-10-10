@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
-/* ESTILOS GENERALES */
+/* =================================
+   ESTILOS GENERALES
+   ================================= */
 body {
     font-family: 'Fredoka One', cursive, sans-serif;
     text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
@@ -18,30 +20,34 @@ body {
 }
 
 
-#Titulo { font-size: 40px; margin-top: 0px; }
-.karaoke-main { display: flex; flex-direction: column; align-items: center; }
+.karaoke-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
 
-/* ESTILOS DE LA PANTALLA DE INICIO */
+#Titulo {
+    font-size: 3.5rem;
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+/* =================================
+   ESTILOS DE LA PANTALLA DE INICIO
+   ================================= */
 #karaoke-container {
-    /* Contenedor ahora es transparente para mostrar el fondo del body */
     background-color: transparent;
-    box-shadow: none; 
-    
-    max-width: 45vw  ;
-    top: 20%;
+    box-shadow: none;
+    max-width: 45vw; /* Ajustado a un tamaño más pequeño que te gustó */
     border-radius: 10px;
     cursor: pointer;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 24vh;
 }
-  /* Estilos generales del karaoke */
-  .karaoke-main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-  }
 
 .karaoke-video-intro {
     width: 100%;
@@ -53,43 +59,114 @@ body {
     transform: scale(1.03);
 }
 
-/* ESTILOS DURANTE EL KARAOKE */
-#karaoke-phrase { font-family: 'Patrick Hand', cursive; text-shadow: 1px 1px 0 #000; font-size: 1.3rem; }
-.karaoke-phrase .correct-phrase { color: #2ecc71; }
-#karaoke-feedback { font-family: 'Patrick Hand', cursive; text-shadow: 1px 1px 0 #000; font-size: 1.3rem; }
-#retry-button { padding: 10px 25px; background-color: #ffffff; border-radius: 50px; font-size: 1rem; cursor: pointer; transition: background-color 0.3s; margin: 10px auto; border: 2px solid #f39c12; color: #e67e22; }
-#retry-button:hover { background-color: #f39c12; color: #ffffff; }
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+/* =================================
+   ESTILOS DURANTE EL KARAOKE
+   ================================= */
+#karaoke-phrase {
+    font-family: 'Patrick Hand', cursive;
+    text-shadow: 1px 1px 0 #000;
+    font-size: 1.3rem;
+}
 
-  #karaoke-phrase {
-      font-family: 'Patrick Hand', cursive;
-      text-shadow: 1px 1px 0 #000;
-      font-size: 1.3rem; /* Un poco más grande para mejor lectura */
-  }
+.karaoke-phrase .correct-phrase {
+    color: #2ecc71;
+}
 
-  #karaoke-feedback {
-      font-family: 'Patrick Hand', cursive;
-      text-shadow: 1px 1px 0 #000;
-      font-size: 1.3rem;
-  }
+#karaoke-feedback {
+    font-family: 'Patrick Hand', cursive;
+    text-shadow: 1px 1px 0 #000;
+    font-size: 1.3rem;
+}
 
-  /* Botón */
-  #retry-button {
-    
-      padding: 10px 25px;
-      background-color: #ffffff;
-      border-radius: 50px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      margin: 10px auto;
-  }
+#retry-button {
+    padding: 10px 25px;
+    background-color: #ffffff;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 10px auto;
+    border: 2px solid #f39c12;
+    color: #e67e22;
+}
 
-    #retry-button:hover {
-        background-color: #e67e22;
-    }
-    
-    #Titulo{
-      font-size: 3.5rem;
-      margin-top: 0px;
-    }
+#retry-button:hover {
+    background-color: #f39c12;
+    color: #ffffff;
+}
+
+/* ---- Estilos para el Carrusel de Videos (AÑADIR AL FINAL) ---- */
+
+#video-carousel-container {
+    position: relative;
+    width: 35vw; /* Usamos el tamaño pequeño que te gustó */
+    max-width: 800px;
+    aspect-ratio: 16 / 9;
+    margin: 0 auto;
+    margin-top: 5vh; /* Ajusta este valor si quieres moverlo más abajo */
+}
+
+#video-carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: scale(0.8); /* Empieza pequeño, "detrás" */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    cursor: pointer;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: none;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    transform: scale(1); /* El video activo se ve al frente y en tamaño normal */
+    z-index: 10;
+}
+
+.carousel-slide video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 20;
+    transition: background-color 0.3s;
+}
+
+.carousel-nav-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#prev-btn { left: -60px; } /* Ajustamos la posición de los botones */
+#next-btn { right: -60px; }
+
+
+video::cue {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.5rem;
+    color: #ffd55e; /* Color amarillo */
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
+    text-shadow: 2px 2px 2px #000;
+}

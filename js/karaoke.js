@@ -33,8 +33,19 @@ document.addEventListener("DOMContentLoaded", () => {
             mainSrc: "video/GraciasKaraoke.mp4",
             vttSrc: "video/GraciasKaraoke.vtt",
             pausePoints: [
-                { time: 21, phrases: ["Gracias por estar aquí", "siempre junto a mí"] },
-                { time: 35, phrases: ["Tu amistad es lo mejor", "que puedo sentir"] }
+                { time: 20, phrases: ["Doy gracias por las flores También los árboles"] },
+                { time: 25, phrases: ["Doy gracias por las aves También las abejas"] },
+                { time: 30, phrases: ["Doy gracias por los maestros También por mi familia"] },
+                { time: 40, phrases: ["Doy gracias por mis amigos Y los que juegan conmigo"] },
+                { time: 51, phrases: ["Doy gracias por los abrazos Doy gracias por lo que haces"] },
+                { time: 70, phrases: ["Doy gracias por todo el amor Doy gracias que tú eres tú"] },
+                { time: 75, phrases: ["Gracias, gracias, gracias, gracias Gracias, gracias, gracias"] },
+                { time: 80, phrases: ["Doy gracias por las flores También los árboles"] },
+                { time: 85, phrases: ["Doy gracias por las aves También las abejas"] },
+                { time: 90, phrases: ["Doy gracias por los maestros También por mi familia"] },
+                { time: 100, phrases: ["Doy gracias por mis amigos Y los que juegan conmigo"] },
+                { time: 111, phrases: ["Doy gracias por los abrazos Doy gracias por lo que haces"] },
+                { time: 118, phrases: ["Doy gracias por todo el amor Doy gracias que tú eres tú"] }
             ]
         }
     ];

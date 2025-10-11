@@ -39,7 +39,7 @@ listenMessage.style.display = 'none';
 const vocabularioCompleto = {
     'A': {
         facil: [
-            { palabra: 'Agua', imagen: 'imagenes/vocabulario/Agua_potable.webp' },
+            { palabra: 'Agua', imagen: 'imagenes/vocabulario/Agua_potable.jpg' },
             { palabra: 'Ala', imagen: 'imagenes/vocabulario/arbol.jpg' },
             { palabra: 'Arco', imagen: 'imagenes/vocabulario/arco.jpg' },
             { palabra: 'Ave', imagen: 'imagenes/vocabulario/ave.jpg' },

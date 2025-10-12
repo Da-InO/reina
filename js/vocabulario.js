@@ -384,7 +384,7 @@ function iniciarReconocimiento() {
             message.textContent = `❌ Intenta de nuevo. Dijiste: "${transcriptOriginal}"`;
             guardarResultado(palabra, letra, "incorrecto");
             // Reproducimos el video de caritas tristes
-            playFeedbackVideo('video/video_lluvia_transparente.webm');
+            playFeedbackVideo('video/Video_lluvia_transparente.webm');
         }
     };
 

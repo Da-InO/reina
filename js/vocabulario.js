@@ -39,25 +39,25 @@ listenMessage.style.display = 'none';
 const vocabularioCompleto = {
     'A': {
         facil: [
-            { palabra: 'Agua', imagen: 'imagenes/vocabulario/Agua_potable.webp' },
-            { palabra: 'Ala', imagen: 'imagenes/vocabulario/arbol.jpg' },
-            { palabra: 'Arco', imagen: 'imagenes/vocabulario/arco.jpg' },
-            { palabra: 'Ave', imagen: 'imagenes/vocabulario/ave.jpg' },
-            { palabra: 'Ana', imagen: 'imagenes/vocabulario/ana.jpg' }
+            { palabra: 'Agua', imagen: 'imagenes/Vocabulario/Agua_potable.webp' },
+            { palabra: 'Ala', imagen: 'imagenes/Vocabulario/arbol.jpg' },
+            { palabra: 'Arco', imagen: 'imagenes/Vocabulario/arco.jpg' },
+            { palabra: 'Ave', imagen: 'imagenes/Vocabulario/ave.jpg' },
+            { palabra: 'Ana', imagen: 'imagenes/Vocabulario/ana.jpg' }
         ],
         intermedio: [
-            { palabra: 'Amigo', imagen: 'imagenes/vocabulario/amigo.jpg' },
-            { palabra: 'Azul', imagen: 'imagenes/vocabulario/azul.jpg' },
-            { palabra: 'Aroma', imagen: 'imagenes/vocabulario/aroma.jpg' },
-            { palabra: 'Animal', imagen: 'imagenes/vocabulario/animal.jpg' },
-            { palabra: 'Amarillo', imagen: 'imagenes/vocabulario/amarillo.jpg' }
+            { palabra: 'Amigo', imagen: 'imagenes/Vocabulario/amigo.jpg' },
+            { palabra: 'Azul', imagen: 'imagenes/Vocabulario/azul.jpg' },
+            { palabra: 'Aroma', imagen: 'imagenes/Vocabulario/aroma.jpg' },
+            { palabra: 'Animal', imagen: 'imagenes/Vocabulario/animal.jpg' },
+            { palabra: 'Amarillo', imagen: 'imagenes/Vocabulario/amarillo.jpg' }
         ],
         dificil: [
-            { palabra: 'Abundante', imagen: 'imagenes/vocabulario/abundante.jpg' },
-            { palabra: 'Acelerado', imagen: 'imagenes/vocabulario/acelerado.jpg' },
-            { palabra: 'Armonioso', imagen: 'imagenes/vocabulario/armonioso.jpg' },
-            { palabra: 'Ambicioso', imagen: 'imagenes/vocabulario/ambicioso.jpg' },
-            { palabra: 'Absoluto', imagen: 'imagenes/vocabulario/absoluto.jpg' }
+            { palabra: 'Abundante', imagen: 'imagenes/Vocabulario/abundante.jpg' },
+            { palabra: 'Acelerado', imagen: 'imagenes/Vocabulario/acelerado.jpg' },
+            { palabra: 'Armonioso', imagen: 'imagenes/Vocabulario/armonioso.jpg' },
+            { palabra: 'Ambicioso', imagen: 'imagenes/Vocabulario/ambicioso.jpg' },
+            { palabra: 'Absoluto', imagen: 'imagenes/Vocabulario/absoluto.jpg' }
         ]
     },
     'E': {

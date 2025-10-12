@@ -33,8 +33,19 @@ document.addEventListener("DOMContentLoaded", () => {
             mainSrc: "video/GraciasKaraoke.mp4",
             vttSrc: "video/GraciasKaraoke.vtt",
             pausePoints: [
-                { time: 21, phrases: ["Gracias por estar aquí", "siempre junto a mí"] },
-                { time: 35, phrases: ["Tu amistad es lo mejor", "que puedo sentir"] }
+                { time: 20, phrases: ["Doy gracias por las flores, También los árboles"] },
+                { time: 25, phrases: ["Doy gracias por las aves, También las abejas"] },
+                { time: 30, phrases: ["Doy gracias por los maestros También por mi familia"] },
+                { time: 40, phrases: ["Doy gracias por mis amigos Y los que juegan conmigo"] },
+                { time: 51, phrases: ["Doy gracias por los abrazos Doy gracias por lo que haces"] },
+                { time: 70, phrases: ["Doy gracias por todo el amor Doy gracias que tú eres tú"] },
+                { time: 75, phrases: ["Gracias, gracias, gracias, gracias Gracias, gracias, gracias"] },
+                { time: 80, phrases: ["Doy gracias por las flores También los árboles"] },
+                { time: 85, phrases: ["Doy gracias por las aves También las abejas"] },
+                { time: 90, phrases: ["Doy gracias por los maestros También por mi familia"] },
+                { time: 100, phrases: ["Doy gracias por mis amigos Y los que juegan conmigo"] },
+                { time: 111, phrases: ["Doy gracias por los abrazos Doy gracias por lo que haces"] },
+                { time: 118, phrases: ["Doy gracias por todo el amor Doy gracias que tú eres tú"] }
             ]
         }
     ];
@@ -157,23 +168,32 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         // Lógica del reconocimiento de voz
+        // --- ESTA ES LA SECCIÓN CORREGIDA ---
         recognition.onresult = (event) => {
+            // 1. Limpiamos lo que el niño dijo (esto ya lo hacías bien)
             const transcript = normalizeText(event.results[event.results.length - 1][0].transcript);
-            const phrases = pausePoints[currentPauseIndex].phrases;
-            const currentPhrase = normalizeText(phrases[currentPhraseIndex]);
 
-            if (transcript.includes(currentPhrase)) {
-                currentPhraseIndex++;
-                if (currentPhraseIndex >= phrases.length) {
-                    karaokeFeedback.textContent = "¡Excelente! Continuando...";
-                    currentPauseIndex++;
-                    recognition.stop();
-                    setTimeout(() => karaokeVideo.play(), 1000);
-                } else {
-                    karaokeFeedback.textContent = `¡Muy bien! Ahora la siguiente...`;
+            // 2. Obtenemos TODAS las frases esperadas para esta pausa
+            const phrasesToSay = pausePoints[currentPauseIndex].phrases;
+
+            // 3. Comprobamos si lo que dijo el niño incluye CADA UNA de las frases esperadas
+            let allSaidCorrectly = true;
+            for (const phrase of phrasesToSay) {
+                // Limpiamos cada frase esperada antes de compararla
+                const cleanPhrase = normalizeText(phrase);
+                if (!transcript.includes(cleanPhrase)) {
+                    allSaidCorrectly = false;
+                    break; // Si una frase falta, dejamos de comprobar
                 }
+            }
+
+            if (allSaidCorrectly) {
+                karaokeFeedback.textContent = "¡Excelente! Continuando...";
+                currentPauseIndex++;
+                recognition.stop();
+                setTimeout(() => karaokeVideo.play(), 1000);
             } else {
-                karaokeFeedback.textContent = `Escuché: "${transcript}". Inténtalo de nuevo.`;
+                karaokeFeedback.textContent = `Escuché: "${event.results[event.results.length - 1][0].transcript}". Inténtalo de nuevo.`;
             }
         };
 

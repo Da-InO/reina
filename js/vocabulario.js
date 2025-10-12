@@ -375,7 +375,7 @@ function iniciarReconocimiento() {
             message.textContent = `✅ ¡Correcto!`;
             guardarResultado(palabra, letra, "correcto");
             // Reproducimos el video de confeti y, CUANDO TERMINE, avanzamos de palabra
-            playFeedbackVideo('video/video_confeti_transparente.webm', () => {
+            playFeedbackVideo('video/Video_confeti_transparente.webm', () => {
                 avanzarPalabra();
                 message.textContent = "";
             });

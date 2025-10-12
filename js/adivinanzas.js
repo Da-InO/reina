@@ -21,7 +21,6 @@ const adivinanzas = [
         respuestas: [
             { src: "imagenes/Adivinanzas/nieve.png", correct: true, alt: "nieve" },
             { src: "imagenes/Adivinanzas/platano.png", correct: true, alt: "platano" },
-          //  { src: "imagenes/Adivinanzas/agua.png", correct: false, alt: "agua" },
             { src: "imagenes/Adivinanzas/piedra.png", correct: false, alt: "piedra" }
         ]
     },
@@ -160,12 +159,12 @@ function loadAdivinanza() {
     respuesta3.setAttribute("data-correct", adivinanza.respuestas[2].correct);
 }
 
-// Función para mostrar el resultado
+//Función para mostrar el resultado
 function showResult(isCorrect) {
     const resultado = document.getElementById("resultado");
     const resultadoTexto = document.getElementById("resultado-texto");
 
-    resultado.style.display = "flex"; // Mostrar el cuadro flotante
+    resultado.style.display = "flex"; 
     if (isCorrect) {
         resultadoTexto.textContent = "✅¡Correcto!";
     } else {
@@ -173,16 +172,18 @@ function showResult(isCorrect) {
     }
 
     setTimeout(() => {
-        resultado.style.display = "none"; // Ocultar el cuadro flotante
-        currentQuestionIndex++;
-        if (currentQuestionIndex < adivinanzas.length) {
-            loadAdivinanza(); // Cargar la siguiente adivinanza
-        } else {
-            alert("¡Felicidades! Has completado todas las adivinanzas.");
+        resultado.style.display = "none"; 
+
+        if (isCorrect) {  // Solo avanzar si la respuesta es correcta
+            currentQuestionIndex++;
+            if (currentQuestionIndex < adivinanzas.length) {
+                loadAdivinanza(); // Cargar la siguiente adivinanza
+            } else {
+                alert("¡Felicidades! Has completado todas las adivinanzas.");
+            }
         }
     }, 2000);
 }
-
 // Función para manejar la selección de respuestas
 function checkAnswer(e) {
     const isCorrect = e.target.getAttribute("data-correct") === "true";

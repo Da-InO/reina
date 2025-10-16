@@ -40,10 +40,10 @@ const vocabularioCompleto = {
     'A': {
         facil: [
             { palabra: 'Agua', imagen: 'imagenes/Vocabulario/Agua_potable.webp' },
-            { palabra: 'Ala', imagen: 'imagenes/Vocabulario/arbol.jpg' },
-            { palabra: 'Arco', imagen: 'imagenes/Vocabulario/arco.jpg' },
-            { palabra: 'Ave', imagen: 'imagenes/Vocabulario/ave.jpg' },
-            { palabra: 'Ana', imagen: 'imagenes/Vocabulario/ana.jpg' }
+            { palabra: 'Ala', imagen: 'imagenes/Vocabulario/ala.png' },
+            { palabra: 'Arco', imagen: 'imagenes/Vocabulario/Arco.png' },
+            { palabra: 'Ave', imagen: 'imagenes/Vocabulario/ave.webp' },
+            { palabra: 'Alto', imagen: 'imagenes/Vocabulario/aguja.webp' }
         ],
         intermedio: [
             { palabra: 'Amigo', imagen: 'imagenes/Vocabulario/amigo.jpg' },
@@ -375,7 +375,7 @@ function iniciarReconocimiento() {
             message.textContent = `✅ ¡Correcto!`;
             guardarResultado(palabra, letra, "correcto");
             // Reproducimos el video de confeti y, CUANDO TERMINE, avanzamos de palabra
-            playFeedbackVideo('video/video_confeti_transparente.webm', () => {
+            playFeedbackVideo('video/Video_confeti_transparente.webm', () => {
                 avanzarPalabra();
                 message.textContent = "";
             });

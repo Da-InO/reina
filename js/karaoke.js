@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 { time: 18, phrases: ["Abre, cierra, abre, cierra, Da una palmadita"] },
                 { time: 27, phrases: ["Abre, cierra, abre, cierra, Ponla en tu regazo"] },
                 { time: 36, phrases: ["Grande y pequeño, Grande, pequeño, grande, pequeño"] },
-                { time: 44, phrases: ["Grande, grande, grande, grande, pequeño, Grande, pequeño"] },
+                { time: 45, phrases: ["Grande, grande, grande, grande, pequeño, Grande, pequeño"] },
                 { time: 49, phrases: ["grande, pequeño, Grande, grande, grande, grande, pequeño"] },
                 { time: 57, phrases: ["Por favor. No, gracias, Por favor. No gracias"] },
                 { time: 62, phrases: ["Por favor. No gracias, Por favor, por favor"] },

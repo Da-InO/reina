@@ -69,6 +69,7 @@ const vocabularioCompleto = {
             { palabra: 'Espada', imagen: 'imagenes/vocabulario/espada.jpg' }
         ],
         intermedio: ['Ensalada', 'Edificio', 'Elegante', 'Estudiante', 'Equipo'],
+        
         dificil: ['Espectacular', 'Eficiente', 'Elaborado', 'Ecosistema', 'Eternidad']
     },
     'I': {

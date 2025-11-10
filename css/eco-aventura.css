@@ -121,3 +121,43 @@
       right: 150px;
       transform: translateY(-50%);
     }
+
+    /* --- Estilos para el Buscador de Letras --- */
+
+.search-container {
+    position: absolute; /* Posicionamiento absoluto */
+    top: 25px;          /* Distancia desde arriba */
+    right: 30px;         /* Distancia desde la derecha */
+    display: flex;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50px; /* Bordes redondeados */
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.search-container input[type="search"] {
+    border: none;
+    outline: none;
+    padding: 8px 15px;
+    font-size: 1rem;
+    font-family: Arial, sans-serif; /* Fuente simple para el input */
+    color: #333;
+    text-shadow: none; /* Quita la sombra de texto del body */
+    width: 150px;
+}
+
+.search-container .search-button {
+    background-color: #f8f8f8;
+    border: none;
+    padding: 0 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-container .search-button:hover {
+    background-color: #f0f0f0;
+}

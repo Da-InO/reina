@@ -143,24 +143,37 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 2rem;
+    
+    /* ----- CAMBIOS CLAVE ----- */
+    background-color: transparent; /* ¡MUY IMPORTANTE! */
+    border: none;                  /* ¡MUY IMPORTANTE! */
+    border-radius: 0;              /* Opcional: quita el círculo si lo tenías */
+    /* ------------------------ */
+
+    width: 100px;  /* Ajusta esto al tamaño de tu mano */
+    height: 100px; /* Ajusta esto al tamaño de tu mano */
     cursor: pointer;
     z-index: 20;
-    transition: background-color 0.3s;
+    transition: transform 0.2s ease-in-out;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.carousel-nav-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+.carousel-nav-btn .arrow-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.2s ease-in-out;
 }
 
-#prev-btn { left: -60px; } /* Ajustamos la posición de los botones */
-#next-btn { right: -60px; }
+.carousel-nav-btn:hover .arrow-image {
+    transform: scale(1.15); /* Agrandamos solo la mano */
+}
+
+#prev-btn { left: -120px; } /* O el valor que prefieras para alejarlo más de la izquierda */
+#next-btn { right: -120px; } /* O el valor que prefieras para alejarlo más de la derecha */
 
 
 video::cue {

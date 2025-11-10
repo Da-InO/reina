@@ -25,8 +25,12 @@
         <div id="video-carousel-container">
             <div id="video-carousel">
             </div>
-            <button id="prev-btn" class="carousel-nav-btn">&lt;</button>
-            <button id="next-btn" class="carousel-nav-btn">&gt;</button>
+            <button id="prev-btn" class="carousel-nav-btn" aria-label="Video Anterior">
+                <img src="imagenes/Izquierda.svg" alt="Mano apuntando a la izquierda" class="arrow-image">
+            </button>
+            <button id="next-btn" class="carousel-nav-btn" aria-label="Video Siguiente">
+                <img src="imagenes/Derecha.svg" alt="Mano apuntando a la derecha" class="arrow-image">
+            </button>
         </div>
         <video id="karaoke-video" style="width: 76%; max-height: 550px; display: none;" muted>
             <track src="video/GraciasKaraoke.vtt" kind="subtitles" srclang="es" label="Español" default>
